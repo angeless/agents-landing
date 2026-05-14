@@ -5,11 +5,35 @@
     "forWhom": "为一人公司、赶路者、和想'用 AI 跑一家公司'的人造。",
     "cta": "加入种子用户",
     "ctaSecondary": "看看长什么样",
-    "placeholder": "Task 4.2 即将完善 — Hero / 三 persona / 工具治理 / Roadmap / About / FAQ"
+    "heroCards": {
+      "life": {
+        "title": "民宿生活公司",
+        "task1": "LIFE_CRAWLER · 竞品房价差异表",
+        "task2": "LIFE_ANALYST · 出行路线复核",
+        "task3": "LIFE_KM · 知识库新增整理",
+        "tag": "3 agents · 24h 心跳调度 · 🟢 V1-A live"
+      },
+      "tourism": {
+        "title": "旅游运营公司",
+        "task1": "TOUR_CONTENT · 小红书/抖音选题",
+        "task2": "TOUR_SALES · 客户答疑清单",
+        "task3": "TOUR_DISPATCH · 供应商付款提醒",
+        "task4": "TOUR_FINANCE · 报价利润复核",
+        "tag": "4 agents · 24h 心跳调度 · 🟢 V1-A live"
+      },
+      "create": {
+        "title": "+ 你的 AI 公司",
+        "line1": "PM Agent 帮你建",
+        "line2": "自然语言描述业务流",
+        "line3": "一键生成 + 立即跑",
+        "cta": "立即体验 →",
+        "tag": "🚀 内测开放"
+      }
+    }
   },
   "Footer": {
     "builtWith": "Built with Claude Code",
     "github": "GitHub",
-    "openCore": "Open Core: free to self-host, pay only for cloud + tokens"
+    "openCore": "Open Core：自部署免费 · 按云端 + token 成本透传付费"
   }
 }

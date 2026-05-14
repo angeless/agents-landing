@@ -5,7 +5,31 @@
     "forWhom": "Built for indie hackers, AI-native operators, and platform teams evaluating build-vs-buy.",
     "cta": "Get Beta Access",
     "ctaSecondary": "See how it works",
-    "placeholder": "Task 4.2 incoming — Hero / personas / tool governance / roadmap / about / FAQ"
+    "heroCards": {
+      "life": {
+        "title": "Vacation Rental Ops",
+        "task1": "LIFE_CRAWLER — daily competitor pricing diff",
+        "task2": "LIFE_ANALYST — guest route review",
+        "task3": "LIFE_KM — knowledge base updates",
+        "tag": "3 agents · 24h heartbeat · 🟢 V1-A live"
+      },
+      "tourism": {
+        "title": "Travel Operations",
+        "task1": "TOUR_CONTENT — content topic radar",
+        "task2": "TOUR_SALES — customer FAQ digest",
+        "task3": "TOUR_DISPATCH — supplier payment alerts",
+        "task4": "TOUR_FINANCE — pricing margin review",
+        "tag": "4 agents · 24h heartbeat · 🟢 V1-A live"
+      },
+      "create": {
+        "title": "+ Your AI Company",
+        "line1": "PM Agent helps you build it",
+        "line2": "Describe your workflow in plain language",
+        "line3": "Generate + run instantly",
+        "cta": "Try it now →",
+        "tag": "🚀 Beta open"
+      }
+    }
   },
   "Footer": {
     "builtWith": "Built with Claude Code",

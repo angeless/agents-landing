@@ -86,7 +86,14 @@ function ApplyFormContent() {
     // backend — missing values record NULL in DB without affecting the
     // primary submission.
     const variantSessionId = getOrCreateVariantSessionId();
-    const referrerUrl = document.referrer || undefined;
+    // Backend Pydantic max_length=500 on referrer_url (per migration 033).
+    // Long referrers (Google advanced-search params, UTM bloat, pre-signed
+    // S3 URLs) can exceed this and would 422-reject the entire submission.
+    // Truncate client-side so the form always succeeds; analytics loses the
+    // tail of the URL, which is acceptable.
+    const referrerUrl = document.referrer
+      ? document.referrer.slice(0, 500)
+      : undefined;
 
     try {
       const res = await fetch("/api/v1/landing/apply", {

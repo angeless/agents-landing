@@ -135,7 +135,7 @@ function HeroSection({ variant }: { variant: Variant }) {
 
       <LifeCard />
       <TourismCard />
-      <CreateCard />
+      <CreateCard variant={variant} />
 
       <div className="relative z-10 max-w-4xl text-center space-y-10 animate-fade-in">
         {/* Top eyebrow chip */}
@@ -190,10 +190,10 @@ function HeroSection({ variant }: { variant: Variant }) {
           {t("forWhom")}
         </p>
 
-        {/* CTAs */}
+        {/* CTAs — propagate ?v= so apply page can attribute A/B variant */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-2">
           <a
-            href="/apply"
+            href={`/apply?v=${variant}`}
             className="group inline-flex items-center gap-2 px-8 py-3.5 rounded font-medium transition-all hover:scale-[1.03]"
             style={{
               backgroundColor: "var(--cosmic-neon)",
@@ -276,7 +276,7 @@ function TourismCard() {
   );
 }
 
-function CreateCard() {
+function CreateCard({ variant }: { variant: Variant }) {
   const t = useTranslations("HomePage.heroCards.create");
   return (
     <div
@@ -297,7 +297,7 @@ function CreateCard() {
         <li>· {t("line3")}</li>
       </ul>
       <a
-        href="/apply"
+        href={`/apply?v=${variant}`}
         className="inline-flex items-center gap-1.5 text-sm font-medium hover:gap-2 transition-all"
         style={{ color: "var(--cosmic-neon)" }}
       >

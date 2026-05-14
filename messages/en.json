@@ -242,5 +242,19 @@
     "builtWith": "BUILT WITH CLAUDE CODE",
     "github": "GITHUB",
     "openCore": "Open Core: free to self-host, pay only for cloud + tokens"
+  },
+  "WishlistPage": {
+    "eyebrow": "MCP WISHLIST",
+    "title": "Which SaaS would you want as an MCP server?",
+    "subtitle": "Your vote shapes V1.11+ adapter priority.",
+    "body1": "ACM V1-A ships with 5 official MCP servers (filesystem / fetch / sqlite / memory / puppeteer). The next batch will be SaaS-specific adapters.",
+    "candidates": "Feishu / WeCom / DingTalk / Xiaohongshu / WeChat Pay / Yuque / your pick",
+    "body2": "Real voting form ships after V1.10 release. For now, drop your vote via either channel below — all input enters the priority pool.",
+    "channelsLabel": "VOTING CHANNELS",
+    "emailLabel": "Email a one-line vote",
+    "emailCta": "Send email",
+    "githubLabel": "GitHub Issues",
+    "githubCta": "Open issue",
+    "backToHome": "← Back to home"
   }
 }

@@ -242,5 +242,19 @@
     "builtWith": "BUILT WITH CLAUDE CODE",
     "github": "GITHUB",
     "openCore": "Open Core：自部署免费 · 按云端 + token 成本透传付费"
+  },
+  "WishlistPage": {
+    "eyebrow": "MCP WISHLIST",
+    "title": "你想看到哪个 SaaS 上架 MCP server？",
+    "subtitle": "投票决定 V1.11+ 适配优先级。",
+    "body1": "ACM V1-A 当前预装 5 个 MCP 官方 server (filesystem / fetch / sqlite / memory / puppeteer)。下一批适配会做国内 SaaS。",
+    "candidates": "飞书 / 企微 / 钉钉 / 小红书 / 微信支付 / 语雀 / 其他 — 你说",
+    "body2": "投票表单 V1.10 release 后会做完整版。现在用以下任一 channel 留意见，会全部进入需求池。",
+    "channelsLabel": "投票 CHANNELS",
+    "emailLabel": "Email 一行 vote",
+    "emailCta": "发邮件",
+    "githubLabel": "GitHub Issues",
+    "githubCta": "建 issue",
+    "backToHome": "← 返回首页"
   }
 }

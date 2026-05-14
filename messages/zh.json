@@ -62,38 +62,89 @@
     "mcpFootnote": "通过 mcp_installer 一键装任意 npm/uv MCP server。基于 ModelContextProtocol 官方包生态，已有 1300+ 第三方 server 可装。",
     "mcpLink": "查看 MCP Server 目录 ↗",
     "servers": {
-      "filesystem": {
-        "name": "File System",
-        "desc": "本地文件读写",
-        "risk": "medium"
-      },
-      "fetch": {
-        "name": "HTTP Fetch",
-        "desc": "外部 HTTP 请求",
-        "risk": "high",
-        "needsApproval": "默认需审批"
-      },
-      "sqlite": {
-        "name": "SQLite",
-        "desc": "数据库查询",
-        "risk": "medium"
-      },
-      "memory": {
-        "name": "Memory",
-        "desc": "长期记忆图谱",
-        "risk": "low"
-      },
-      "puppeteer": {
-        "name": "Browser",
-        "desc": "headless 浏览器",
-        "risk": "high",
-        "needsApproval": "默认需审批"
-      }
+      "filesystem": { "name": "File System", "desc": "本地文件读写", "risk": "medium" },
+      "fetch": { "name": "HTTP Fetch", "desc": "外部 HTTP 请求", "risk": "high", "needsApproval": "默认需审批" },
+      "sqlite": { "name": "SQLite", "desc": "数据库查询", "risk": "medium" },
+      "memory": { "name": "Memory", "desc": "长期记忆图谱", "risk": "low" },
+      "puppeteer": { "name": "Browser", "desc": "headless 浏览器", "risk": "high", "needsApproval": "默认需审批" }
     },
-    "riskLabel": {
-      "low": "low risk",
-      "medium": "medium risk",
-      "high": "high risk"
+    "riskLabel": { "low": "low risk", "medium": "medium risk", "high": "high risk" }
+  },
+  "Section4": {
+    "title": "Roadmap — 透明",
+    "subtitle": "✅ 内容基于现有 codebase 47 个 modules 实地盘点，不画饼。",
+    "now": {
+      "label": "现在能做",
+      "emoji": "🟢",
+      "tag": "V1-A live",
+      "item1": "多 agent 治理：tool-proxy + 审批闸 + 调用回执 + 审计日志",
+      "item2": "工作流 DAG 引擎：4 种 agent 角色 + 4 种执行模式",
+      "item3": "AI 辅助创建业务流：PM Agent 自然语言对话 → plan → 应用",
+      "item4": "24 小时心跳调度：heartbeat-engine + 定时任务 + 超时回扫",
+      "item5": "MCP 工具生态：5 个官方 server 预装 + npm 1300+ 可装",
+      "item6": "多租户 + 团队工作空间：每人独立 tenant + 角色权限 + 知识沉淀",
+      "item7": "2 个业务领域模板（POC）：民宿运营 / 旅游运营"
+    },
+    "soon": {
+      "label": "6 个月内",
+      "emoji": "🔨",
+      "tag": "V1.10 - V1.11",
+      "item1": "自助激活 + 邀请制（V1.10 当前 milestone）",
+      "item2": "GitHub 开源 + 一键自部署脚本（deploy_hetzner.sh 已 80%）",
+      "item3": "LLM 后端可换（Volcengine / Anthropic / OpenAI / 国产）",
+      "item4": "Tenant 级配额强制 + 成本告警（防失控烧钱）",
+      "item5": "更多业务领域模板（电商 / 客服 / 内容生产）",
+      "item6": "错误恢复 + business continuity patterns",
+      "item7": "Streaming UI（token-by-token 反馈）"
+    },
+    "future": {
+      "label": "远期愿景",
+      "emoji": "🌅",
+      "tag": "V1.x+，无时间承诺",
+      "item1": "真正'无人值守 24h AI 公司'",
+      "item2": "Manager agent 自动调度其它 agents 协作",
+      "item3": "业务 KPI dashboard + agent OKR",
+      "item4": "跨 tenant agent 协作（公司间 agent 接活）",
+      "item5": "社区 marketplace（agent / 业务流模板）"
+    },
+    "wishlist": {
+      "title": "征集中",
+      "desc": "你最想看到哪个国内 SaaS 上架 MCP server？",
+      "candidates": "飞书 / 企微 / 钉钉 / 小红书 / 微信支付 / 语雀 ...",
+      "footnote": "投票决定下一批适配优先级。",
+      "cta": "提名 + 投票 →"
+    }
+  },
+  "Section5": {
+    "title": "About",
+    "line1": "我是 ACM 的作者。前游戏 PM、世界牧民，现在 vibecoding 上路，一人公司实践者。",
+    "line2": "我相信人生不能只有一种活法，AI 能解放真正的生产力 —",
+    "line3": "让你有更多余地，去体验真实的生活。",
+    "line4": "ACM 是我为这条路造的工具。"
+  },
+  "Section6": {
+    "title": "FAQ",
+    "subtitle": "5 条常见问题。",
+    "numberingNote": "编号保留 PO Q4 候选原编号（F5/F6/F7 未选中，决策为进 docs 不进 landing）。",
+    "F1": {
+      "q": "我可以自己部署 ACM 吗？数据不出我的服务器？",
+      "a": "是的。ACM 是 Open Core 模式 — 仓库 GitHub 完全开源、自部署免费、自己控制数据。我们的 Hosted 服务（agents.ngzr.net）按成本透传收费（服务器 + LLM token），你只为算力买单，不为软件本身买单。"
+    },
+    "F2": {
+      "q": "跟 LangChain / CrewAI / n8n / Coze 有什么不同？",
+      "a": "LangChain / CrewAI 是给单个开发者写 agent 代码用的 SDK。ACM 是给'已经有 agent 的人'准备的运营层 — 审批、调用、心跳、配额、团队空间 这一摞。n8n / Coze 是给非工程师拖拽自动化用的 low-code 平台。ACM 假设你能写 agent，给你工程师视角的治理工具。简单说：他们是'写 agent'，ACM 是'管 agent'。"
+    },
+    "F3": {
+      "q": "ACM 真的能跑 '24 小时 AI 公司' 吗？现在做到哪一步了？",
+      "a": "70% 做到了。后端能力都在：PM Agent 自动建业务流、4 角色虚拟团队、多 agent 协作模式、心跳调度、工具治理、2 个业务模板（民宿 + 旅游）。30% 还差：UX 打磨、配额强制、自动错误恢复、更多业务模板。V1-A 内测就是请你来用、来骂，帮我们把后面 30% 长出来。"
+    },
+    "F4": {
+      "q": "定价模型？V1-A 测试期间收费吗？",
+      "a": "V1-A 测试期间免费（自部署永远免费）。后续 Hosted 服务按成本透传：你用多少服务器 + LLM token 就付多少（小幅运营加价）。软件本身永远不收费。"
+    },
+    "F8": {
+      "q": "我能贡献代码 / fork / 二次开发吗？",
+      "a": "是的。仓库 OSS（V1-A 期间会开放）。二次开发 / fork 完全允许。社区 PR 欢迎，特别是业务领域模板（电商、客服、内容生产 — 你的擅长方向）。"
     }
   },
   "Footer": {

@@ -1,15 +1,26 @@
 import { useTranslations } from "next-intl";
-import { Folder, Globe, Database, Brain, Monitor, Shield } from "lucide-react";
+import {
+  Folder,
+  Globe,
+  Database,
+  Brain,
+  Monitor,
+  Shield,
+} from "lucide-react";
 
 /**
- * V1-A Landing 主页 — Task 4.2 A1 + A2（Hero + Footer + Section 2 + Section 3）
- *
- * 后续 A3 commit 将补充：
- * - Section 4 Roadmap 三段 + 征集中段
- * - Section 5 About（zh + en 纯文字）
- * - Section 6 FAQ（5 条）
+ * V1-A Landing 主页 — Task 4.2 完整版（A1 + A2 + A3）
  *
  * 视觉规范见 brief §12（ACM 主仓 docs/product/v1-a-landing-brief.md v3 frozen）。
+ *
+ * 章节布局：
+ *   §12.2 Hero — Asset Defense 主基底 + 浮动 3 张 AI 公司卡
+ *   §5 Section 2 — 三类受众 (B / C / D persona)
+ *   §5 Section 3 + §12.5 OQ10 — 核心能力 + 5 MCP 官方 server 中心-星座
+ *   §5 Section 4 — Roadmap 三段（now / soon / future）+ 征集中段
+ *   §5 Section 5 — About（作者自述，纯文字）
+ *   §5 Section 6 — FAQ（F1/F2/F3/F4/F8）
+ *   §6 Footer — Built with Claude Code + Open Core
  */
 export default function HomePage() {
   return (
@@ -17,6 +28,9 @@ export default function HomePage() {
       <HeroSection />
       <Section2 />
       <Section3 />
+      <Section4 />
+      <Section5 />
+      <Section6 />
       <Footer />
     </>
   );
@@ -275,7 +289,6 @@ function Section3() {
   return (
     <section className="relative py-20 px-6 canvas-grid">
       <div className="max-w-6xl mx-auto space-y-16">
-        {/* Title */}
         <header className="text-center space-y-3">
           <h2
             className="text-3xl md:text-4xl font-bold tracking-tight"
@@ -291,14 +304,12 @@ function Section3() {
           </p>
         </header>
 
-        {/* 3 个核心能力 bullet */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <CapabilityBullet title={t("cap1Title")} desc={t("cap1Desc")} />
           <CapabilityBullet title={t("cap2Title")} desc={t("cap2Desc")} />
           <CapabilityBullet title={t("cap3Title")} desc={t("cap3Desc")} />
         </div>
 
-        {/* MCP 工具治理：中心 ACM Hub + 5 server logo */}
         <div className="pt-8 space-y-8">
           <div className="text-center space-y-2">
             <h3
@@ -309,7 +320,6 @@ function Section3() {
             </h3>
           </div>
 
-          {/* ACM Hub badge */}
           <div className="flex justify-center">
             <div
               className="inline-flex flex-col items-center px-6 py-4 rounded-full border-2 neon-glow"
@@ -337,7 +347,6 @@ function Section3() {
             </div>
           </div>
 
-          {/* 5 MCP server cards */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
             <MCPServerCard server="filesystem" Icon={Folder} />
             <MCPServerCard server="fetch" Icon={Globe} />
@@ -346,7 +355,6 @@ function Section3() {
             <MCPServerCard server="puppeteer" Icon={Monitor} />
           </div>
 
-          {/* footnote + link */}
           <div className="pt-4 text-center space-y-2 max-w-2xl mx-auto">
             <p
               className="text-sm leading-relaxed"
@@ -389,11 +397,6 @@ function CapabilityBullet({ title, desc }: { title: string; desc: string }) {
   );
 }
 
-/**
- * MCP Server card with risk badge.
- * Risk badge color mapping (brief §12.5 OQ10):
- *   low → gray   medium → blue   high → orange
- */
 function MCPServerCard({
   server,
   Icon,
@@ -441,7 +444,7 @@ function MCPServerCard({
       >
         {tRisk(risk)}
       </div>
-      {(risk === "high") && (
+      {risk === "high" && (
         <div
           className="text-xs italic"
           style={{ color: "var(--acm-text-secondary)" }}
@@ -449,6 +452,246 @@ function MCPServerCard({
           ⚠ {t("needsApproval")}
         </div>
       )}
+    </div>
+  );
+}
+
+/* ============================================================
+   Section 4 — Roadmap 三段 + 征集中（Brief §5 Section 4 + §12.5 OQ10）
+   ============================================================ */
+
+function Section4() {
+  const t = useTranslations("Section4");
+  return (
+    <section className="py-20 px-6" id="roadmap">
+      <div className="max-w-6xl mx-auto space-y-12">
+        <header className="text-center space-y-3">
+          <h2
+            className="text-3xl md:text-4xl font-bold tracking-tight"
+            style={{ color: "var(--acm-text-primary)" }}
+          >
+            {t("title")}
+          </h2>
+          <p style={{ color: "var(--acm-text-secondary)" }}>{t("subtitle")}</p>
+        </header>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <RoadmapColumn
+            namespace="Section4.now"
+            itemKeys={["item1", "item2", "item3", "item4", "item5", "item6", "item7"]}
+            withPulse
+          />
+          <RoadmapColumn
+            namespace="Section4.soon"
+            itemKeys={["item1", "item2", "item3", "item4", "item5", "item6", "item7"]}
+          />
+          <RoadmapColumn
+            namespace="Section4.future"
+            itemKeys={["item1", "item2", "item3", "item4", "item5"]}
+          />
+        </div>
+
+        <Wishlist />
+      </div>
+    </section>
+  );
+}
+
+function RoadmapColumn({
+  namespace,
+  itemKeys,
+  withPulse = false,
+}: {
+  namespace: string;
+  itemKeys: string[];
+  withPulse?: boolean;
+}) {
+  const t = useTranslations(namespace);
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center gap-2">
+        <span className="text-2xl">{t("emoji")}</span>
+        <div>
+          <h3
+            className="text-lg font-semibold"
+            style={{ color: "var(--acm-text-primary)" }}
+          >
+            {t("label")}
+          </h3>
+          <div
+            className="text-xs"
+            style={{ color: "var(--acm-text-secondary)" }}
+          >
+            {t("tag")}
+          </div>
+        </div>
+      </div>
+      <ul className="space-y-2">
+        {itemKeys.map((key) => (
+          <li
+            key={key}
+            className="text-sm leading-relaxed flex items-start gap-2"
+            style={{ color: "var(--acm-text-secondary)" }}
+          >
+            {withPulse && (
+              <span
+                className="pulse-dot mt-1.5 inline-block w-1.5 h-1.5 rounded-full flex-shrink-0"
+                style={{ backgroundColor: "var(--acm-accent)" }}
+              />
+            )}
+            {!withPulse && (
+              <span className="mt-1.5 inline-block w-1 h-1 rounded-full flex-shrink-0"
+                style={{ backgroundColor: "var(--acm-text-secondary)" }}
+              />
+            )}
+            <span>{t(key)}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function Wishlist() {
+  const t = useTranslations("Section4.wishlist");
+  return (
+    <div
+      className="rounded-lg border p-6 max-w-2xl mx-auto space-y-3 animate-fade-in"
+      style={{
+        backgroundColor: "var(--acm-bg-panel)",
+        borderColor: "var(--acm-border-light)",
+      }}
+    >
+      <div className="flex items-center gap-2">
+        <span
+          className="pulse-dot inline-block w-2 h-2 rounded-full"
+          style={{ backgroundColor: "var(--acm-accent)" }}
+        />
+        <h3
+          className="text-base font-semibold"
+          style={{ color: "var(--acm-text-primary)" }}
+        >
+          {t("title")}
+        </h3>
+      </div>
+      <p
+        className="text-sm leading-relaxed"
+        style={{ color: "var(--acm-text-secondary)" }}
+      >
+        {t("desc")}
+      </p>
+      <p
+        className="text-sm font-mono"
+        style={{ color: "var(--acm-text-primary)" }}
+      >
+        {t("candidates")}
+      </p>
+      <p
+        className="text-xs italic"
+        style={{ color: "var(--acm-text-secondary)" }}
+      >
+        {t("footnote")}
+      </p>
+      <a
+        href="/wishlist"
+        className="inline-block text-sm font-medium hover:underline"
+        style={{ color: "var(--acm-accent)" }}
+      >
+        {t("cta")}
+      </a>
+    </div>
+  );
+}
+
+/* ============================================================
+   Section 5 — About（Brief §5 Section 5，单栏纯文字）
+   ============================================================ */
+
+function Section5() {
+  const t = useTranslations("Section5");
+  return (
+    <section className="py-20 px-6" id="about">
+      <div className="max-w-2xl mx-auto text-center space-y-4 animate-fade-in">
+        <h2
+          className="text-3xl md:text-4xl font-bold tracking-tight mb-8"
+          style={{ color: "var(--acm-text-primary)" }}
+        >
+          {t("title")}
+        </h2>
+        <p
+          className="text-base md:text-lg leading-relaxed"
+          style={{ color: "var(--acm-text-secondary)" }}
+        >
+          {t("line1")}
+          <br />
+          {t("line2")}
+          <br />
+          {t("line3")}
+          <br />
+          {t("line4")}
+        </p>
+      </div>
+    </section>
+  );
+}
+
+/* ============================================================
+   Section 6 — FAQ（Brief §5 Section 6，F1/F2/F3/F4/F8）
+   ============================================================ */
+
+function Section6() {
+  const t = useTranslations("Section6");
+  const faqKeys = ["F1", "F2", "F3", "F4", "F8"] as const;
+  return (
+    <section className="py-20 px-6" id="faq">
+      <div className="max-w-3xl mx-auto space-y-12">
+        <header className="text-center space-y-3">
+          <h2
+            className="text-3xl md:text-4xl font-bold tracking-tight"
+            style={{ color: "var(--acm-text-primary)" }}
+          >
+            {t("title")}
+          </h2>
+          <p style={{ color: "var(--acm-text-secondary)" }}>{t("subtitle")}</p>
+          <p
+            className="text-xs italic"
+            style={{ color: "var(--acm-text-secondary)" }}
+          >
+            {t("numberingNote")}
+          </p>
+        </header>
+
+        <div className="space-y-8">
+          {faqKeys.map((key) => (
+            <FAQItem
+              key={key}
+              num={key}
+              q={t(`${key}.q`)}
+              a={t(`${key}.a`)}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FAQItem({ num, q, a }: { num: string; q: string; a: string }) {
+  return (
+    <div className="space-y-3 animate-fade-in">
+      <h3
+        className="text-lg font-semibold flex items-start gap-3"
+        style={{ color: "var(--acm-text-primary)" }}
+      >
+        <span style={{ color: "var(--acm-accent)" }}>{num}.</span>
+        <span>{q}</span>
+      </h3>
+      <p
+        className="text-sm leading-relaxed pl-8"
+        style={{ color: "var(--acm-text-secondary)" }}
+      >
+        {a}
+      </p>
     </div>
   );
 }

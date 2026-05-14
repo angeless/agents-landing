@@ -62,38 +62,89 @@
     "mcpFootnote": "Install any npm/uv MCP server via mcp_installer with one click. Based on the official ModelContextProtocol package ecosystem (1300+ third-party servers available).",
     "mcpLink": "Browse MCP Server catalog ↗",
     "servers": {
-      "filesystem": {
-        "name": "File System",
-        "desc": "local file r/w",
-        "risk": "medium"
-      },
-      "fetch": {
-        "name": "HTTP Fetch",
-        "desc": "external HTTP",
-        "risk": "high",
-        "needsApproval": "approval required"
-      },
-      "sqlite": {
-        "name": "SQLite",
-        "desc": "database query",
-        "risk": "medium"
-      },
-      "memory": {
-        "name": "Memory",
-        "desc": "knowledge graph",
-        "risk": "low"
-      },
-      "puppeteer": {
-        "name": "Browser",
-        "desc": "headless browser",
-        "risk": "high",
-        "needsApproval": "approval required"
-      }
+      "filesystem": { "name": "File System", "desc": "local file r/w", "risk": "medium" },
+      "fetch": { "name": "HTTP Fetch", "desc": "external HTTP", "risk": "high", "needsApproval": "approval required" },
+      "sqlite": { "name": "SQLite", "desc": "database query", "risk": "medium" },
+      "memory": { "name": "Memory", "desc": "knowledge graph", "risk": "low" },
+      "puppeteer": { "name": "Browser", "desc": "headless browser", "risk": "high", "needsApproval": "approval required" }
     },
-    "riskLabel": {
-      "low": "low risk",
-      "medium": "medium risk",
-      "high": "high risk"
+    "riskLabel": { "low": "low risk", "medium": "medium risk", "high": "high risk" }
+  },
+  "Section4": {
+    "title": "Roadmap — transparent",
+    "subtitle": "✅ Based on real codebase audit (47 modules). No fairy tales.",
+    "now": {
+      "label": "Now live",
+      "emoji": "🟢",
+      "tag": "V1-A live",
+      "item1": "Multi-agent governance: tool-proxy + approval gate + call receipts + audit log",
+      "item2": "Workflow DAG engine: 4 agent roles + 4 execution modes",
+      "item3": "AI-assisted workflow creation: PM Agent natural-language dialog → plan → apply",
+      "item4": "24h heartbeat scheduling: heartbeat-engine + cron + timeout sweep",
+      "item5": "MCP tool ecosystem: 5 official servers preinstalled + 1300+ npm installable",
+      "item6": "Multi-tenant + team workspace: independent tenant + roles + knowledge persistence",
+      "item7": "2 business domain templates (POC): vacation rental ops / travel ops"
+    },
+    "soon": {
+      "label": "Coming 6 months",
+      "emoji": "🔨",
+      "tag": "V1.10 - V1.11",
+      "item1": "Self-serve activation + invite system (V1.10 current milestone)",
+      "item2": "GitHub OSS + one-click self-deploy script (deploy_hetzner.sh 80% done)",
+      "item3": "Swappable LLM backends (Volcengine / Anthropic / OpenAI / China-domestic)",
+      "item4": "Tenant-level quota enforcement + cost alerts (prevent runaway burn)",
+      "item5": "More business domain templates (e-commerce / customer service / content production)",
+      "item6": "Error recovery + business continuity patterns",
+      "item7": "Streaming UI (token-by-token feedback)"
+    },
+    "future": {
+      "label": "Future vision",
+      "emoji": "🌅",
+      "tag": "V1.x+, no time commitment",
+      "item1": "True 'unattended 24h AI company'",
+      "item2": "Manager agent auto-orchestrating other agents",
+      "item3": "Business KPI dashboard + agent OKR",
+      "item4": "Cross-tenant agent collaboration (companies subcontract agents)",
+      "item5": "Community marketplace (agent / workflow templates)"
+    },
+    "wishlist": {
+      "title": "Wanted",
+      "desc": "Which SaaS would you most want as an MCP server next?",
+      "candidates": "Feishu / WeCom / DingTalk / Xiaohongshu / WeChat Pay / Yuque ...",
+      "footnote": "Your votes shape the next adapter priority.",
+      "cta": "Nominate + vote →"
+    }
+  },
+  "Section5": {
+    "title": "About",
+    "line1": "I'm the author of ACM. Former game PM, now a digital nomad —",
+    "line2": "building from the road, running a one-person company.",
+    "line3": "I believe AI shouldn't replace life; it should give you more of it.",
+    "line4": "ACM is the tool I built for that path."
+  },
+  "Section6": {
+    "title": "FAQ",
+    "subtitle": "5 common questions.",
+    "numberingNote": "Numbering preserves PO Q4 original IDs (F5/F6/F7 not selected — decision: ship to docs, not landing).",
+    "F1": {
+      "q": "Can I self-deploy ACM? Will my data stay on my server?",
+      "a": "Yes. ACM follows an Open Core model — the repo is fully OSS on GitHub, self-hosting is free, you control your data. Our Hosted service (agents.ngzr.net) charges at cost (server + LLM tokens). You only pay for compute, never for the software itself."
+    },
+    "F2": {
+      "q": "How is ACM different from LangChain / CrewAI / n8n / Coze?",
+      "a": "LangChain / CrewAI are SDKs for individual developers writing agent code. ACM is the ops layer for people who already have agents — approvals, tool calls, heartbeats, quotas, team workspace. n8n / Coze are low-code platforms for non-engineers. ACM assumes you can write agents and gives you the engineer-grade governance tooling. In short: they write agents, ACM manages them."
+    },
+    "F3": {
+      "q": "Can ACM really run a '24h AI company'? How far along is it?",
+      "a": "About 70% done. The backend is in place: PM Agent auto-creates workflows, 4-role virtual team (manager / executor / reflector / notetaker), multi-agent collaboration patterns, heartbeat scheduling, tool governance, 2 business templates (rental + travel ops). The remaining 30%: UX polish, quota enforcement, automatic error recovery, more templates. V1-A beta is where you come in — use it, roast it, help us grow the last 30%."
+    },
+    "F4": {
+      "q": "Pricing model? Is V1-A free during beta?",
+      "a": "V1-A beta is free (self-hosting is free forever). The Hosted service later passes through cost: pay for server time + LLM tokens (small ops markup). The software itself is never charged for."
+    },
+    "F8": {
+      "q": "Can I contribute code / fork / build derivatives?",
+      "a": "Yes. Repo will be OSS (during V1-A). Forks / derivatives fully allowed. Community PRs welcome — especially business domain templates (e-commerce, customer service, content production — your expertise areas)."
     }
   },
   "Footer": {

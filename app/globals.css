@@ -1,26 +1,255 @@
+/* ============================================================
+   agents-landing — globals.css
+   Ported from ACM Design System v1.0 (services/web-console/app/globals.css)
+   Adaptations for landing:
+   - Tailwind v3 directives → v4 single @import
+   - body removes overflow:hidden (landing 需要滚动)
+   - Drop .scanlines + flow-dash keyframe (brief §12.6 主动放弃)
+   - Drop legacy --bg / --bg-grad-* (web-console 专用)
+   - Default theme = dark (brief §12.3)，.light class 切换浅色
+   ============================================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&display=swap");
 @import "tailwindcss";
 
+/* Tailwind v4 — class-based dark mode toggle (默认 dark, 加 .light 切浅色) */
+@variant light (&:where(.light, .light *));
+
+/* ============================================================
+   ACM Design System Tokens — Dark by default
+   ============================================================ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Fonts */
+  --font-sans: "Inter", "Noto Sans SC", system-ui, sans-serif;
+  --font-serif: "Noto Serif SC", serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* Brand / Accent — dark cyan neon */
+  --acm-accent: #00d9ff;
+  --acm-accent-neon: #00d9ff;
+  --acm-accent-glow: 0 0 12px #00d9ff66;
+
+  /* Backgrounds */
+  --acm-bg-base: #000;
+  --acm-bg-panel: #1a1a1af2;
+  --acm-bg-sidebar: #0a0a0a;
+  --acm-bg-canvas: #000;
+
+  /* Borders */
+  --acm-border-faint: #ffffff14;
+  --acm-border-light: #ffffff26;
+  --acm-border-active: #ffffff4d;
+
+  /* Text */
+  --acm-text-primary: #d1d5db;
+  --acm-text-secondary: #6b7280;
+  --acm-text-accent: #00d9ff;
+
+  /* Semantic */
+  --acm-warning: #f59e0b;
+  --acm-success: #10b981;
+  --acm-error: #ef4444;
+  --acm-info: #3b82f6;
+
+  /* Foreground on colored bg */
+  --acm-on-accent: #000;
+  --acm-on-semantic: #fff;
+  --acm-overlay: #000000b3;
+
+  /* Surfaces */
+  --acm-surface-hover: #232323;
+  --acm-grid-color: #ffffff05;
+
+  /* Shadows */
+  --acm-shadow-sm: 0 1px 2px #0000004d;
+  --acm-shadow-md: 0 4px 6px -1px #0006;
+  --acm-shadow-lg: 0 10px 15px -3px #00000080;
+  --acm-shadow-neon: 0 0 20px #00d9ff26;
+
+  /* Animation tokens */
+  --transition-fast: 150ms;
+  --transition-normal: 200ms;
+  --transition-slow: 300ms;
+  --transition-complex: 500ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.45, 0, 0.55, 1);
 }
+
+/* ---------- Light Theme override (opt-in via .light) ---------- */
+.light {
+  --acm-accent: #0d7c66;
+  --acm-accent-neon: #10b981;
+  --acm-accent-glow: 0 0 12px #10b9814d;
+
+  --acm-bg-base: #fafafa;
+  --acm-bg-panel: #fff;
+  --acm-bg-sidebar: #f3f4f6;
+  --acm-bg-canvas: #fff;
+
+  --acm-border-faint: #e5e7eb;
+  --acm-border-light: #d1d5db;
+  --acm-border-active: #9ca3af;
+
+  --acm-text-primary: #1b1f23;
+  --acm-text-secondary: #6b7280;
+  --acm-text-accent: #0d7c66;
+
+  --acm-on-accent: #fff;
+  --acm-surface-hover: #f9fafb;
+  --acm-grid-color: #f3f4f6;
+
+  --acm-shadow-sm: 0 1px 2px #0000000d;
+  --acm-shadow-md: 0 4px 6px -1px #0000001a;
+  --acm-shadow-lg: 0 10px 15px -3px #0000001a;
+  --acm-shadow-neon: 0 0 20px #10b98126;
+}
+
+/* ============================================================
+   Tailwind v4 @theme — 桥接 CSS vars 到 utility class
+   ============================================================ */
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-acm-bg-base: var(--acm-bg-base);
+  --color-acm-bg-panel: var(--acm-bg-panel);
+  --color-acm-text-primary: var(--acm-text-primary);
+  --color-acm-text-secondary: var(--acm-text-secondary);
+  --color-acm-accent: var(--acm-accent);
+  --color-acm-border-faint: var(--acm-border-faint);
+  --color-acm-border-light: var(--acm-border-light);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ============================================================
+   Base Styles
+   ============================================================ */
+
+* {
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  color: var(--acm-text-primary);
+  background-color: var(--acm-bg-base);
+}
+
+/* ============================================================
+   Utility Classes — Brief §12.6 cheat-sheet 直接可用
+   ============================================================ */
+
+.neon-glow {
+  box-shadow: var(--acm-accent-glow);
+}
+
+.neon-text {
+  color: var(--acm-accent-neon);
+  text-shadow: 0 0 8px currentColor;
+}
+
+.canvas-grid {
+  background-image:
+    linear-gradient(to right, var(--acm-grid-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--acm-grid-color) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.pulse-dot {
+  animation: 2s infinite pulse-acm;
+}
+
+/* ============================================================
+   Animation Utilities (brief §12.3 line 422)
+   ============================================================ */
+
+.animate-fade-in {
+  animation: acm-fade-in var(--transition-normal) var(--ease-out) both;
+}
+
+.animate-slide-in-right {
+  animation: acm-slide-in-right var(--transition-slow) var(--ease-out) both;
+}
+
+.animate-slide-in-up {
+  animation: acm-slide-in-up var(--transition-slow) var(--ease-out) both;
+}
+
+.animate-scale-in {
+  animation: acm-scale-in var(--transition-normal) var(--ease-out) both;
+}
+
+/* ============================================================
+   Keyframes
+   ============================================================ */
+
+@keyframes pulse-acm {
+  0% {
+    box-shadow: 0 0 0 0 var(--acm-accent-neon);
+    opacity: 1;
+  }
+  70% {
+    box-shadow: 0 0 0 8px transparent;
+    opacity: 0.7;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+    opacity: 1;
+  }
+}
+
+@keyframes acm-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes acm-slide-in-right {
+  from { opacity: 0; transform: translateX(16px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes acm-slide-in-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes acm-scale-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ============================================================
+   Custom Scrollbar
+   ============================================================ */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--acm-border-light);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--acm-border-active);
+}
+
+/* ============================================================
+   Reduced Motion (brief §12.3 line 422 兼容)
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

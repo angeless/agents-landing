@@ -31,6 +31,71 @@
       }
     }
   },
+  "Section2": {
+    "title": "你来这里，是因为...",
+    "subtitle": "三类人在 V1-A 内测会受益最深。",
+    "personaB": {
+      "title": "平台团队评估 build-vs-buy",
+      "desc": "多租户 + 审批治理 + 可自部署。不锁数据出境。"
+    },
+    "personaC": {
+      "title": "AI 教育者 / 创作者",
+      "desc": "工作流可视化 + 调用回执 + tier 配额，做 demo / 教程不爆钱包。"
+    },
+    "personaD": {
+      "title": "一人公司 / 赶路者",
+      "desc": "一键部署 + 心跳监控 + 错误重试。把运维这层从你脑子里删掉。"
+    }
+  },
+  "Section3": {
+    "title": "核心能力",
+    "subtitle": "三层骨架 + 5 个 MCP 官方 server 预装 + npm 生态 1300+ 可装。",
+    "cap1Title": "多 agent 工作流引擎",
+    "cap1Desc": "DAG 拓扑 + completion hook + 边条件。例：客服查询 → 风控审批 → 工单创建 可声明式拼接。",
+    "cap2Title": "工具调用治理",
+    "cap2Desc": "tool-proxy 拦截 + 审批闸 + tier 配额。高风险动作走人工审批，低风险直通。",
+    "cap3Title": "心跳 + 定时任务",
+    "cap3Desc": "heartbeat scheduler + cron。每天 9 点跑日报 agent，挂了自动告警。",
+    "hubLabel": "ACM Hub",
+    "hubSubtitle": "工具 + 治理",
+    "mcpHeadline": "已集成 5 个 MCP 官方 server",
+    "mcpFootnote": "通过 mcp_installer 一键装任意 npm/uv MCP server。基于 ModelContextProtocol 官方包生态，已有 1300+ 第三方 server 可装。",
+    "mcpLink": "查看 MCP Server 目录 ↗",
+    "servers": {
+      "filesystem": {
+        "name": "File System",
+        "desc": "本地文件读写",
+        "risk": "medium"
+      },
+      "fetch": {
+        "name": "HTTP Fetch",
+        "desc": "外部 HTTP 请求",
+        "risk": "high",
+        "needsApproval": "默认需审批"
+      },
+      "sqlite": {
+        "name": "SQLite",
+        "desc": "数据库查询",
+        "risk": "medium"
+      },
+      "memory": {
+        "name": "Memory",
+        "desc": "长期记忆图谱",
+        "risk": "low"
+      },
+      "puppeteer": {
+        "name": "Browser",
+        "desc": "headless 浏览器",
+        "risk": "high",
+        "needsApproval": "默认需审批"
+      }
+    },
+    "riskLabel": {
+      "low": "low risk",
+      "medium": "medium risk",
+      "high": "high risk"
+    }
+  },
   "Footer": {
     "builtWith": "Built with Claude Code",
     "github": "GitHub",

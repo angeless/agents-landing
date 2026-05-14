@@ -31,6 +31,71 @@
       }
     }
   },
+  "Section2": {
+    "title": "You're here because...",
+    "subtitle": "Three audiences benefit most from V1-A beta.",
+    "personaB": {
+      "title": "Platform teams evaluating build vs buy",
+      "desc": "Multi-tenant + approval governance + self-deployable. No data lock-in."
+    },
+    "personaC": {
+      "title": "AI educators & creators",
+      "desc": "Workflow visualization + call receipts + tier quotas. Demo / teach without burning your wallet."
+    },
+    "personaD": {
+      "title": "Indie operators on the road",
+      "desc": "One-click deploy + heartbeat monitoring + error retry. Remove ops from your headspace."
+    }
+  },
+  "Section3": {
+    "title": "Core capabilities",
+    "subtitle": "Three-layer backbone + 5 official MCP servers preinstalled + 1300+ npm ecosystem.",
+    "cap1Title": "Multi-agent workflow engine",
+    "cap1Desc": "DAG topology + completion hook + edge conditions. e.g. customer query → risk approval → ticket creation, declaratively composed.",
+    "cap2Title": "Tool call governance",
+    "cap2Desc": "tool-proxy interception + approval gate + tier quotas. High-risk actions go through human approval, low-risk pass through.",
+    "cap3Title": "Heartbeat + scheduled tasks",
+    "cap3Desc": "heartbeat scheduler + cron. Run daily report agent at 9am; auto-alert on failure.",
+    "hubLabel": "ACM Hub",
+    "hubSubtitle": "tools + governance",
+    "mcpHeadline": "5 official MCP servers preinstalled",
+    "mcpFootnote": "Install any npm/uv MCP server via mcp_installer with one click. Based on the official ModelContextProtocol package ecosystem (1300+ third-party servers available).",
+    "mcpLink": "Browse MCP Server catalog ↗",
+    "servers": {
+      "filesystem": {
+        "name": "File System",
+        "desc": "local file r/w",
+        "risk": "medium"
+      },
+      "fetch": {
+        "name": "HTTP Fetch",
+        "desc": "external HTTP",
+        "risk": "high",
+        "needsApproval": "approval required"
+      },
+      "sqlite": {
+        "name": "SQLite",
+        "desc": "database query",
+        "risk": "medium"
+      },
+      "memory": {
+        "name": "Memory",
+        "desc": "knowledge graph",
+        "risk": "low"
+      },
+      "puppeteer": {
+        "name": "Browser",
+        "desc": "headless browser",
+        "risk": "high",
+        "needsApproval": "approval required"
+      }
+    },
+    "riskLabel": {
+      "low": "low risk",
+      "medium": "medium risk",
+      "high": "high risk"
+    }
+  },
   "Footer": {
     "builtWith": "Built with Claude Code",
     "github": "GitHub",

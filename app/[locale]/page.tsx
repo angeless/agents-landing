@@ -1,11 +1,10 @@
 import { useTranslations } from "next-intl";
+import { Folder, Globe, Database, Brain, Monitor, Shield } from "lucide-react";
 
 /**
- * V1-A Landing 主页 — Task 4.2 A1 阶段（Hero + Footer）
+ * V1-A Landing 主页 — Task 4.2 A1 + A2（Hero + Footer + Section 2 + Section 3）
  *
- * 后续 A2/A3 commit 将补充：
- * - Section 2 三 persona 卡
- * - Section 3 工具治理（5 个 MCP 官方 server logo + 中心-星座 motif）
+ * 后续 A3 commit 将补充：
  * - Section 4 Roadmap 三段 + 征集中段
  * - Section 5 About（zh + en 纯文字）
  * - Section 6 FAQ（5 条）
@@ -16,6 +15,8 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
+      <Section2 />
+      <Section3 />
       <Footer />
     </>
   );
@@ -30,7 +31,6 @@ function HeroSection() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-6 py-24">
-      {/* 中央径向光晕（brief §12.3 软光晕装饰） */}
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
@@ -40,12 +40,10 @@ function HeroSection() {
         }}
       />
 
-      {/* 浮动 3 张「AI 公司」卡（brief §12.5 OQ8） */}
       <LifeCard />
       <TourismCard />
       <CreateCard />
 
-      {/* Hero 中心文案（z-10 压在浮动卡之上） */}
       <div className="relative z-10 max-w-3xl text-center space-y-6 animate-fade-in">
         <h1
           className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight"
@@ -200,6 +198,257 @@ function CompanyCard({
       >
         {tag}
       </div>
+    </div>
+  );
+}
+
+/* ============================================================
+   Section 2 — 三类受众（Brief §5 Section 2）
+   ============================================================ */
+
+function Section2() {
+  const t = useTranslations("Section2");
+  return (
+    <section className="py-20 px-6" id="features">
+      <div className="max-w-6xl mx-auto">
+        <header className="text-center mb-12 space-y-3">
+          <h2
+            className="text-3xl md:text-4xl font-bold tracking-tight"
+            style={{ color: "var(--acm-text-primary)" }}
+          >
+            {t("title")}
+          </h2>
+          <p style={{ color: "var(--acm-text-secondary)" }}>{t("subtitle")}</p>
+        </header>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <PersonaCard
+            title={t("personaB.title")}
+            desc={t("personaB.desc")}
+          />
+          <PersonaCard
+            title={t("personaC.title")}
+            desc={t("personaC.desc")}
+          />
+          <PersonaCard
+            title={t("personaD.title")}
+            desc={t("personaD.desc")}
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function PersonaCard({ title, desc }: { title: string; desc: string }) {
+  return (
+    <div
+      className="rounded-lg border p-6 animate-fade-in"
+      style={{
+        backgroundColor: "var(--acm-bg-panel)",
+        borderColor: "var(--acm-border-light)",
+      }}
+    >
+      <h3
+        className="text-lg font-semibold mb-3"
+        style={{ color: "var(--acm-text-primary)" }}
+      >
+        {title}
+      </h3>
+      <p
+        className="text-sm leading-relaxed"
+        style={{ color: "var(--acm-text-secondary)" }}
+      >
+        {desc}
+      </p>
+    </div>
+  );
+}
+
+/* ============================================================
+   Section 3 — 核心能力 + 5 MCP server 中心-星座 motif
+   Brief §5 Section 3 + §12.5 OQ10 + §12.2 Section 3 视觉决策
+   ============================================================ */
+
+function Section3() {
+  const t = useTranslations("Section3");
+  return (
+    <section className="relative py-20 px-6 canvas-grid">
+      <div className="max-w-6xl mx-auto space-y-16">
+        {/* Title */}
+        <header className="text-center space-y-3">
+          <h2
+            className="text-3xl md:text-4xl font-bold tracking-tight"
+            style={{ color: "var(--acm-text-primary)" }}
+          >
+            {t("title")}
+          </h2>
+          <p
+            className="text-base"
+            style={{ color: "var(--acm-text-secondary)" }}
+          >
+            {t("subtitle")}
+          </p>
+        </header>
+
+        {/* 3 个核心能力 bullet */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <CapabilityBullet title={t("cap1Title")} desc={t("cap1Desc")} />
+          <CapabilityBullet title={t("cap2Title")} desc={t("cap2Desc")} />
+          <CapabilityBullet title={t("cap3Title")} desc={t("cap3Desc")} />
+        </div>
+
+        {/* MCP 工具治理：中心 ACM Hub + 5 server logo */}
+        <div className="pt-8 space-y-8">
+          <div className="text-center space-y-2">
+            <h3
+              className="text-xl md:text-2xl font-semibold"
+              style={{ color: "var(--acm-text-primary)" }}
+            >
+              {t("mcpHeadline")}
+            </h3>
+          </div>
+
+          {/* ACM Hub badge */}
+          <div className="flex justify-center">
+            <div
+              className="inline-flex flex-col items-center px-6 py-4 rounded-full border-2 neon-glow"
+              style={{
+                backgroundColor: "var(--acm-bg-panel)",
+                borderColor: "var(--acm-accent)",
+              }}
+            >
+              <Shield
+                className="w-8 h-8 mb-1"
+                style={{ color: "var(--acm-accent)" }}
+              />
+              <div
+                className="text-sm font-bold"
+                style={{ color: "var(--acm-accent)" }}
+              >
+                {t("hubLabel")}
+              </div>
+              <div
+                className="text-xs"
+                style={{ color: "var(--acm-text-secondary)" }}
+              >
+                {t("hubSubtitle")}
+              </div>
+            </div>
+          </div>
+
+          {/* 5 MCP server cards */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+            <MCPServerCard server="filesystem" Icon={Folder} />
+            <MCPServerCard server="fetch" Icon={Globe} />
+            <MCPServerCard server="sqlite" Icon={Database} />
+            <MCPServerCard server="memory" Icon={Brain} />
+            <MCPServerCard server="puppeteer" Icon={Monitor} />
+          </div>
+
+          {/* footnote + link */}
+          <div className="pt-4 text-center space-y-2 max-w-2xl mx-auto">
+            <p
+              className="text-sm leading-relaxed"
+              style={{ color: "var(--acm-text-secondary)" }}
+            >
+              {t("mcpFootnote")}
+            </p>
+            <a
+              href="https://github.com/modelcontextprotocol/servers"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block text-sm font-medium hover:underline"
+              style={{ color: "var(--acm-accent)" }}
+            >
+              {t("mcpLink")}
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function CapabilityBullet({ title, desc }: { title: string; desc: string }) {
+  return (
+    <div className="space-y-2 animate-slide-in-up">
+      <h3
+        className="text-base font-semibold"
+        style={{ color: "var(--acm-text-primary)" }}
+      >
+        {title}
+      </h3>
+      <p
+        className="text-sm leading-relaxed"
+        style={{ color: "var(--acm-text-secondary)" }}
+      >
+        {desc}
+      </p>
+    </div>
+  );
+}
+
+/**
+ * MCP Server card with risk badge.
+ * Risk badge color mapping (brief §12.5 OQ10):
+ *   low → gray   medium → blue   high → orange
+ */
+function MCPServerCard({
+  server,
+  Icon,
+}: {
+  server: "filesystem" | "fetch" | "sqlite" | "memory" | "puppeteer";
+  Icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>;
+}) {
+  const t = useTranslations(`Section3.servers.${server}`);
+  const tRisk = useTranslations("Section3.riskLabel");
+  const risk = t("risk") as "low" | "medium" | "high";
+
+  const riskStyle = {
+    low: { backgroundColor: "#6b728033", color: "#9ca3af" },
+    medium: { backgroundColor: "#3b82f633", color: "#60a5fa" },
+    high: { backgroundColor: "#f59e0b33", color: "#fbbf24" },
+  }[risk];
+
+  return (
+    <div
+      className="rounded-lg border p-4 text-center space-y-2 transition-transform hover:scale-105"
+      style={{
+        backgroundColor: "var(--acm-bg-panel)",
+        borderColor: "var(--acm-border-light)",
+      }}
+    >
+      <Icon
+        className="w-8 h-8 mx-auto"
+        style={{ color: "var(--acm-text-primary)" }}
+      />
+      <div
+        className="text-sm font-semibold"
+        style={{ color: "var(--acm-text-primary)" }}
+      >
+        {t("name")}
+      </div>
+      <div
+        className="text-xs"
+        style={{ color: "var(--acm-text-secondary)" }}
+      >
+        {t("desc")}
+      </div>
+      <div
+        className="inline-block text-xs px-2 py-0.5 rounded font-medium"
+        style={riskStyle}
+      >
+        {tRisk(risk)}
+      </div>
+      {(risk === "high") && (
+        <div
+          className="text-xs italic"
+          style={{ color: "var(--acm-text-secondary)" }}
+        >
+          ⚠ {t("needsApproval")}
+        </div>
+      )}
     </div>
   );
 }

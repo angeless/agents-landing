@@ -147,6 +147,34 @@
       "a": "是的。仓库 OSS（V1-A 期间会开放）。二次开发 / fork 完全允许。社区 PR 欢迎，特别是业务领域模板（电商、客服、内容生产 — 你的擅长方向）。"
     }
   },
+  "ApplyPage": {
+    "title": "加入种子用户",
+    "subtitle": "告诉我们你想用 ACM 做什么。我们审完会发邀请码到你的邮箱。",
+    "nameLabel": "姓名",
+    "namePlaceholder": "你的名字",
+    "emailLabel": "邮箱",
+    "emailPlaceholder": "you@example.com",
+    "intentLabel": "你想用 ACM 做什么？",
+    "intentPlaceholder": "想搭个 AI 客服系统，给 5 人公司用 / 在做 indie 产品想嵌 agent / 教 AI 编程的课需要 demo / ...",
+    "intentHelper": "这是我们审批的核心信号 — 一句话说清你的场景，越具体越容易通过。",
+    "submit": "提交申请",
+    "submitting": "提交中…",
+    "errorTitle": "提交失败",
+    "errorBody": "可能是网络问题或服务暂忙。请稍后再试。",
+    "errorRetry": "重试",
+    "thankYouTitle": "已收到 ✓",
+    "thankYouBody": "我们尽快审核。审批通过会发邀请码到你的邮箱。",
+    "backToHome": "← 返回首页",
+    "privacyNote": "我们只把你的邮箱用于发邀请码 + 重要更新。不会用于营销 / 不会卖给第三方。"
+  },
+  "OverCapacity": {
+    "title": "我们暂时排满了 🚧",
+    "body": "ACM V1-A 内测是手工审批制，名额有限。系统目前在处理高峰，稍后会自动恢复。你可以：",
+    "option1": "几分钟后重试",
+    "option2": "先看一眼 ACM 在做什么",
+    "retry": "重试",
+    "backToHome": "← 返回首页"
+  },
   "Footer": {
     "builtWith": "Built with Claude Code",
     "github": "GitHub",

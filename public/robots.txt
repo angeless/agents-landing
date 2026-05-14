@@ -1,0 +1,25 @@
+# ACM V1-A Landing — robots.txt
+# Per brief §9 + impl-plan v1.10.0 Task 4.5
+
+User-agent: *
+Allow: /
+Allow: /zh
+Allow: /en
+Allow: /apply
+Allow: /zh/apply
+Allow: /en/apply
+
+# 限流页不需要被索引
+Disallow: /over-capacity
+Disallow: /zh/over-capacity
+Disallow: /en/over-capacity
+
+# Admin / app routes（路由通过 CF Worker 转到 ACM web-console，不应被 landing 索引）
+Disallow: /app
+Disallow: /app/
+
+# API routes（路由通过 CF Worker 转到 ACM api-gateway）
+Disallow: /api
+Disallow: /api/
+
+Sitemap: https://agents.ngzr.net/sitemap.xml

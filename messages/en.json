@@ -147,6 +147,34 @@
       "a": "Yes. Repo will be OSS (during V1-A). Forks / derivatives fully allowed. Community PRs welcome — especially business domain templates (e-commerce, customer service, content production — your expertise areas)."
     }
   },
+  "ApplyPage": {
+    "title": "Get Beta Access",
+    "subtitle": "Tell us what you want to build with ACM. We'll review and send an invite code to your inbox.",
+    "nameLabel": "Name",
+    "namePlaceholder": "Your name",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@example.com",
+    "intentLabel": "What are you thinking of using ACM for?",
+    "intentPlaceholder": "Building an internal AI ops platform for 5-person team / Embedding agents into my indie SaaS / Teaching AI engineering and need a demo backend / ...",
+    "intentHelper": "This is the core signal we use to review — a sentence about your scenario; the more specific, the better.",
+    "submit": "Submit",
+    "submitting": "Submitting…",
+    "errorTitle": "Submission failed",
+    "errorBody": "Network issue or service busy. Please try again shortly.",
+    "errorRetry": "Retry",
+    "thankYouTitle": "Received ✓",
+    "thankYouBody": "We'll review shortly. If approved, an invite code will land in your inbox.",
+    "backToHome": "← Back to home",
+    "privacyNote": "Your email is used only for invite code + critical updates. No marketing, no third-party sharing."
+  },
+  "OverCapacity": {
+    "title": "We're temporarily at capacity 🚧",
+    "body": "ACM V1-A beta runs manual approvals and the queue is busy right now. The system will auto-recover shortly. You can:",
+    "option1": "Retry in a few minutes",
+    "option2": "Take a quick look at what ACM does",
+    "retry": "Retry",
+    "backToHome": "← Back to home"
+  },
   "Footer": {
     "builtWith": "Built with Claude Code",
     "github": "GitHub",

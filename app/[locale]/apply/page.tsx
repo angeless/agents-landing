@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 
 /**
@@ -18,7 +19,21 @@ import { useTranslations } from "next-intl";
  * Thank-you 文案：brief §9 line 278 + audit W29 决策 — '我们尽快审核'，不写硬 SLA。
  */
 export default function ApplyPage() {
+  // useSearchParams 需要 Suspense 包裹（Next.js 15+ 静态优化阶段会 CSR-bailout 警告）
+  return (
+    <Suspense fallback={null}>
+      <ApplyFormContent />
+    </Suspense>
+  );
+}
+
+function ApplyFormContent() {
   const t = useTranslations("ApplyPage");
+  const searchParams = useSearchParams();
+  // Hero A/B test variant tracking — null if no ?v=, otherwise "A"/"B"/"C"
+  // backend WaitlistApplyRequest schema 暂未加 variant 字段，Pydantic 默认 extra='ignore'
+  // 会静默丢弃 (不 break 提交)。等 ACM 主仓 backend variant chip 任务完成后启用真存。
+  const variant = searchParams.get("v");
   const [status, setStatus] = useState<
     "idle" | "submitting" | "success" | "error"
   >("idle");
@@ -43,6 +58,7 @@ export default function ApplyPage() {
           name: formData.get("name"),
           email: formData.get("email"),
           intent: formData.get("intent"),
+          variant, // Hero A/B test — null / "A" / "B" / "C"
         }),
       });
 

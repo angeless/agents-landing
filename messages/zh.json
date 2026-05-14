@@ -60,17 +60,17 @@
   },
   "Section2": {
     "eyebrow": "01 · WHO IT'S FOR",
-    "title": "三类人在 V1-A 内测会受益最深。",
-    "subtitle": "ACM 不为所有人造。下面这些是我们盯着的人。",
+    "title": "三类 OPC 在 V1-A 受益最深。",
+    "subtitle": "ACM 不为所有人造 — 给一个人 run N 件事的你造。",
     "personaB": {
-      "label": "PLATFORM TEAM",
-      "title": "平台团队评估 build-vs-buy",
-      "desc": "多租户 + 审批治理 + 可自部署。不锁数据出境。"
+      "label": "SCALING INDIE",
+      "title": "想从 1 个产品扩到 N 个的 indie hacker",
+      "desc": "1 个产品 ship 完想做下 1 个？让 ACM 替你看着上一个，你专心做下一个。"
     },
     "personaC": {
-      "label": "CREATOR / EDUCATOR",
-      "title": "AI 教育者 / 创作者",
-      "desc": "工作流可视化 + 调用回执 + tier 配额，做 demo / 教程不爆钱包。"
+      "label": "DIGITAL NOMAD",
+      "title": "在路上跑业务的世界牧民",
+      "desc": "agent 替你看着 24h，崩了自动重试。你专心去玩 / 写 / 旅行。"
     },
     "personaD": {
       "label": "INDIE OPERATOR",
@@ -80,11 +80,11 @@
   },
   "Section3": {
     "eyebrow": "02 · WHAT IT DOES",
-    "title": "三层骨架 + 工具治理。",
+    "title": "AgentOps Stack：自愈工作流 + 多 agent 编排 + 工具治理。",
     "subtitle": "ACM 不替你写 agent。ACM 是 agent 跑起来之后的'管'。",
     "cap1Title": "多 agent 工作流引擎",
     "cap1Desc": "DAG 拓扑 + completion hook + 边条件。例：客服查询 → 风控审批 → 工单创建 可声明式拼接。",
-    "cap2Title": "工具调用治理",
+    "cap2Title": "AgentOps 治理（工具调用）",
     "cap2Desc": "tool-proxy 拦截 + 审批闸 + tier 配额。高风险动作走人工审批，低风险直通。",
     "cap3Title": "心跳 + 定时任务",
     "cap3Desc": "heartbeat scheduler + cron。每天 9 点跑日报 agent，挂了自动告警。",
@@ -158,9 +158,9 @@
       "item7": "Streaming UI（token-by-token 反馈）"
     },
     "future": {
-      "label": "远期愿景",
+      "label": "持续演进",
       "emoji": "🌅",
-      "tag": "V1.X+ 无时间承诺",
+      "tag": "V1.X+ 持续探索",
       "item1": "真正'无人值守 24h AI 公司'",
       "item2": "Manager agent 自动调度其它 agents",
       "item3": "业务 KPI dashboard + agent OKR",
@@ -179,10 +179,10 @@
   "Section5": {
     "eyebrow": "04 · ABOUT",
     "title": "为什么造 ACM",
-    "line1": "我是 ACM 的作者。前游戏 PM、世界牧民，现在 vibecoding 上路，一人公司实践者。",
+    "line1": "我也是 OPC — 前游戏 PM、世界牧民，现在 vibecoding 上路，给自己造工具。",
     "line2": "我相信人生不能只有一种活法，",
     "line3": "AI 能解放真正的生产力 — 让你有更多余地，去体验真实的生活。",
-    "line4": "ACM 是我为这条路造的工具。"
+    "line4": "Pieter Levels 一人做出 $3.5M ARR — ACM 是我为这条路造的桥。"
   },
   "Section6": {
     "eyebrow": "05 · FAQ",
@@ -194,12 +194,12 @@
       "a": "是的。ACM 是 Open Core 模式 — 仓库 GitHub 完全开源、自部署免费、自己控制数据。我们的 Hosted 服务（agents.ngzr.net）按成本透传收费（服务器 + LLM token），你只为算力买单，不为软件本身买单。"
     },
     "F2": {
-      "q": "跟 LangChain / CrewAI / n8n / Coze 有什么不同？",
-      "a": "LangChain / CrewAI 是给单个开发者写 agent 代码用的 SDK。ACM 是给'已经有 agent 的人'准备的运营层 — 审批、调用、心跳、配额、团队空间 这一摞。n8n / Coze 是给非工程师拖拽自动化用的 low-code 平台。ACM 假设你能写 agent，给你工程师视角的治理工具。简单说：他们是'写 agent'，ACM 是'管 agent'。"
+      "q": "跟 OpenClaw / Cursor agent 有什么不同？",
+      "a": "OpenClaw / Cursor agent 让你跑 1 个 agent。ACM 让你跑一支 agent 军团 — multi-agent + workflow 约束 + 自愈。Agent SDK (LangChain / CrewAI) 帮你写 agent，ACM 是 agent 跑起来后的 ops 层。简单说：他们是「跑 agent」，ACM 是「让 agent 军团 24 小时不挂」。"
     },
     "F3": {
       "q": "ACM 真的能跑 '24 小时 AI 公司' 吗？现在做到哪一步了？",
-      "a": "70% 做到了。后端能力都在：PM Agent 自动建业务流、4 角色虚拟团队、多 agent 协作模式、心跳调度、工具治理、2 个业务模板（民宿 + 旅游）。30% 还差：UX 打磨、配额强制、自动错误恢复、更多业务模板。V1-A 内测就是请你来用、来骂，帮我们把后面 30% 长出来。"
+      "a": "后端能力齐全：PM Agent 自动建业务流、4 角色虚拟团队（manager / executor / reflector / notetaker）、多 agent 协作模式、心跳调度、工具治理、2 个业务模板（民宿 + 旅游）。V1-A 内测就是请你来用、来骂，帮我们把 UX 和模板做更广。"
     },
     "F4": {
       "q": "定价模型？V1-A 测试期间收费吗？",

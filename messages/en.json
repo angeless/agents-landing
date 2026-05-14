@@ -60,17 +60,17 @@
   },
   "Section2": {
     "eyebrow": "01 · WHO IT'S FOR",
-    "title": "Three audiences benefit most from V1-A beta.",
-    "subtitle": "ACM isn't built for everyone. Here's who we're watching for.",
+    "title": "Three OPC types benefit most from V1-A beta.",
+    "subtitle": "ACM isn't built for everyone — built for people running N things solo.",
     "personaB": {
-      "label": "PLATFORM TEAM",
-      "title": "Platform teams evaluating build vs buy",
-      "desc": "Multi-tenant + approval governance + self-deployable. No data lock-in."
+      "label": "SCALING INDIE",
+      "title": "Indie hackers scaling from 1 product to N",
+      "desc": "Shipped one, want to do the next? Let ACM watch the first while you build the second."
     },
     "personaC": {
-      "label": "CREATOR / EDUCATOR",
-      "title": "AI educators & creators",
-      "desc": "Workflow visualization + call receipts + tier quotas. Demo / teach without burning your wallet."
+      "label": "DIGITAL NOMAD",
+      "title": "World-traveling solo operators",
+      "desc": "Your agents run 24h, retry on failure. You go explore / write / travel."
     },
     "personaD": {
       "label": "INDIE OPERATOR",
@@ -80,11 +80,11 @@
   },
   "Section3": {
     "eyebrow": "02 · WHAT IT DOES",
-    "title": "Three-layer backbone + tool governance.",
+    "title": "AgentOps Stack: self-healing workflows + multi-agent orchestration + tool governance.",
     "subtitle": "ACM doesn't write your agents. ACM is the 'management' layer once they're running.",
     "cap1Title": "Multi-agent workflow engine",
     "cap1Desc": "DAG topology + completion hook + edge conditions. e.g. customer query → risk approval → ticket creation, declaratively composed.",
-    "cap2Title": "Tool call governance",
+    "cap2Title": "AgentOps for tool calls",
     "cap2Desc": "tool-proxy interception + approval gate + tier quotas. High-risk actions go through human approval, low-risk pass through.",
     "cap3Title": "Heartbeat + scheduled tasks",
     "cap3Desc": "heartbeat scheduler + cron. Run daily report agent at 9am; auto-alert on failure.",
@@ -158,9 +158,9 @@
       "item7": "Streaming UI (token-by-token feedback)"
     },
     "future": {
-      "label": "Future vision",
+      "label": "Continuing exploration",
       "emoji": "🌅",
-      "tag": "V1.X+ NO COMMITMENT",
+      "tag": "V1.X+ ongoing",
       "item1": "True 'unattended 24h AI company'",
       "item2": "Manager agent auto-orchestrating other agents",
       "item3": "Business KPI dashboard + agent OKR",
@@ -179,10 +179,10 @@
   "Section5": {
     "eyebrow": "04 · ABOUT",
     "title": "Why I built ACM",
-    "line1": "I'm the author of ACM. Former game PM, now a digital nomad —",
+    "line1": "I'm an OPC too — former game PM, digital nomad, now vibecoding on the road, building tools for myself.",
     "line2": "building from the road, running a one-person company.",
     "line3": "I believe AI shouldn't replace life; it should give you more of it.",
-    "line4": "ACM is the tool I built for that path."
+    "line4": "Pieter Levels reached $3.5M ARR solo — ACM is the bridge I built for that path."
   },
   "Section6": {
     "eyebrow": "05 · FAQ",
@@ -194,12 +194,12 @@
       "a": "Yes. ACM follows an Open Core model — the repo is fully OSS on GitHub, self-hosting is free, you control your data. Our Hosted service (agents.ngzr.net) charges at cost (server + LLM tokens). You only pay for compute, never for the software itself."
     },
     "F2": {
-      "q": "How is ACM different from LangChain / CrewAI / n8n / Coze?",
-      "a": "LangChain / CrewAI are SDKs for individual developers writing agent code. ACM is the ops layer for people who already have agents — approvals, tool calls, heartbeats, quotas, team workspace. n8n / Coze are low-code platforms for non-engineers. ACM assumes you can write agents and gives you the engineer-grade governance tooling. In short: they write agents, ACM manages them."
+      "q": "How is ACM different from OpenClaw / Cursor agent?",
+      "a": "OpenClaw / Cursor agent run one agent for you. ACM runs an agent army — multi-agent + workflow constraints + self-healing. Agent SDKs (LangChain / CrewAI) help you write agents; ACM is the ops layer after they're running. In short: they 'run agents'; ACM keeps 'an agent army running 24h without crashing'."
     },
     "F3": {
       "q": "Can ACM really run a '24h AI company'? How far along is it?",
-      "a": "About 70% done. The backend is in place: PM Agent auto-creates workflows, 4-role virtual team (manager / executor / reflector / notetaker), multi-agent collaboration patterns, heartbeat scheduling, tool governance, 2 business templates (rental + travel ops). The remaining 30%: UX polish, quota enforcement, automatic error recovery, more templates. V1-A beta is where you come in — use it, roast it, help us grow the last 30%."
+      "a": "The backend is complete: PM Agent auto-builds workflows, 4-role virtual team (manager / executor / reflector / notetaker), multi-agent collaboration, heartbeat scheduling, tool governance, 2 business templates (rental + travel). V1-A beta is where you come use it, roast it, help us broaden UX and templates."
     },
     "F4": {
       "q": "Pricing model? Is V1-A free during beta?",

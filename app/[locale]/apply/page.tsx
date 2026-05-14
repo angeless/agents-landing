@@ -27,13 +27,45 @@ export default function ApplyPage() {
   );
 }
 
+// Variant whitelist must match backend Pydantic `Literal['A','B','C']`.
+// Anything outside this set is normalized to null so a hand-edited URL
+// like /zh?v=a or /zh?v=D doesn't trigger ACM-VALIDATION 422 on submit.
+const VARIANT_WHITELIST = ["A", "B", "C"] as const;
+type Variant = (typeof VARIANT_WHITELIST)[number];
+
+function normalizeVariant(raw: string | null): Variant | null {
+  const upper = raw?.toUpperCase();
+  return (VARIANT_WHITELIST as readonly string[]).includes(upper ?? "")
+    ? (upper as Variant)
+    : null;
+}
+
+// Variant session ID — opaque client-minted UUID persisted in localStorage
+// so the same visitor's repeat submissions share one ID (for backend's
+// `COUNT(DISTINCT variant_session_id)` cohort dedup). Created lazily on
+// submit to avoid any pre-submit tracking. Returns null in private mode
+// / when localStorage is unavailable — submission still works, dedup is
+// best-effort.
+function getOrCreateVariantSessionId(): string | null {
+  try {
+    let id = localStorage.getItem("acm_variant_sid");
+    if (!id) {
+      id = crypto.randomUUID();
+      localStorage.setItem("acm_variant_sid", id);
+    }
+    return id;
+  } catch {
+    return null;
+  }
+}
+
 function ApplyFormContent() {
   const t = useTranslations("ApplyPage");
   const searchParams = useSearchParams();
-  // Hero A/B test variant tracking — null if no ?v=, otherwise "A"/"B"/"C"
-  // backend WaitlistApplyRequest schema 暂未加 variant 字段，Pydantic 默认 extra='ignore'
-  // 会静默丢弃 (不 break 提交)。等 ACM 主仓 backend variant chip 任务完成后启用真存。
-  const variant = searchParams.get("v");
+  // Hero A/B variant attribution. Backend (migration 039) stores this
+  // in waitlist_applications.variant alongside received_at, user_agent,
+  // and variant_session_id for one-week cohort analysis.
+  const variant = normalizeVariant(searchParams.get("v"));
   const [status, setStatus] = useState<
     "idle" | "submitting" | "success" | "error"
   >("idle");
@@ -50,6 +82,12 @@ function ApplyFormContent() {
       return;
     }
 
+    // Cohort attribution metadata. All three fields are optional on the
+    // backend — missing values record NULL in DB without affecting the
+    // primary submission.
+    const variantSessionId = getOrCreateVariantSessionId();
+    const referrerUrl = document.referrer || undefined;
+
     try {
       const res = await fetch("/api/v1/landing/apply", {
         method: "POST",
@@ -61,7 +99,10 @@ function ApplyFormContent() {
           // ApplyRequest schema field 是 "intended_use" — payload key
           // 必须用 backend 命名，否则 Pydantic 422 ACM-VALIDATION
           intended_use: formData.get("intent"),
-          variant, // Hero A/B test — null / "A" / "B" / "C"
+          // ----- A/B Hero variant attribution (backend migration 039) -----
+          variant, // normalized null | 'A' | 'B' | 'C'
+          variant_session_id: variantSessionId, // null in private mode
+          referrer_url: referrerUrl, // undefined when no document.referrer
         }),
       });
 

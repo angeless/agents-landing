@@ -57,7 +57,10 @@ function ApplyFormContent() {
         body: JSON.stringify({
           name: formData.get("name"),
           email: formData.get("email"),
-          intent: formData.get("intent"),
+          // 注意：form input name 是 "intent" (前端 UI 命名)，但 backend
+          // ApplyRequest schema field 是 "intended_use" — payload key
+          // 必须用 backend 命名，否则 Pydantic 422 ACM-VALIDATION
+          intended_use: formData.get("intent"),
           variant, // Hero A/B test — null / "A" / "B" / "C"
         }),
       });

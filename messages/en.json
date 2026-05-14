@@ -1,66 +1,81 @@
 {
   "HomePage": {
+    "eyebrow": "V1-A · INVITE-ONLY BETA",
     "headline": "An operating system for AI-native operations.",
+    "headlinePart1": "An OS for",
+    "headlinePart2": "<neon>AI-native</neon> operations.",
     "subhead": "ACM is the ops backbone for multi-agent fleets. Approvals, tool calls, heartbeats, quotas — all handled.",
     "forWhom": "Built for indie hackers, AI-native operators, and platform teams evaluating build-vs-buy.",
     "cta": "Get Beta Access",
     "ctaSecondary": "See how it works",
+    "stat1Value": "4 ROLES",
+    "stat1Label": "AGENT VIRTUAL TEAM",
+    "stat2Value": "5 TOOLS",
+    "stat2Label": "OFFICIAL MCP SERVERS",
+    "stat3Value": "24H",
+    "stat3Label": "HEARTBEAT + RETRY",
     "heroCards": {
       "life": {
         "title": "Vacation Rental Ops",
-        "task1": "LIFE_CRAWLER — daily competitor pricing diff",
-        "task2": "LIFE_ANALYST — guest route review",
-        "task3": "LIFE_KM — knowledge base updates",
-        "tag": "3 agents · 24h heartbeat · 🟢 V1-A live"
+        "task1": "LIFE_CRAWLER · daily competitor pricing diff",
+        "task2": "LIFE_ANALYST · guest route review",
+        "task3": "LIFE_KM · knowledge base updates",
+        "tag": "3 AGENTS · 24H · 🟢 LIVE"
       },
       "tourism": {
         "title": "Travel Operations",
-        "task1": "TOUR_CONTENT — content topic radar",
-        "task2": "TOUR_SALES — customer FAQ digest",
-        "task3": "TOUR_DISPATCH — supplier payment alerts",
-        "task4": "TOUR_FINANCE — pricing margin review",
-        "tag": "4 agents · 24h heartbeat · 🟢 V1-A live"
+        "task1": "TOUR_CONTENT · content topic radar",
+        "task2": "TOUR_SALES · customer FAQ digest",
+        "task3": "TOUR_DISPATCH · supplier payment alerts",
+        "task4": "TOUR_FINANCE · pricing margin review",
+        "tag": "4 AGENTS · 24H · 🟢 LIVE"
       },
       "create": {
         "title": "+ Your AI Company",
         "line1": "PM Agent helps you build it",
         "line2": "Describe your workflow in plain language",
         "line3": "Generate + run instantly",
-        "cta": "Try it now →",
-        "tag": "🚀 Beta open"
+        "cta": "Try it now",
+        "tag": "🚀 BETA OPEN"
       }
     }
   },
   "Section2": {
-    "title": "You're here because...",
-    "subtitle": "Three audiences benefit most from V1-A beta.",
+    "eyebrow": "01 · WHO IT'S FOR",
+    "title": "Three audiences benefit most from V1-A beta.",
+    "subtitle": "ACM isn't built for everyone. Here's who we're watching for.",
     "personaB": {
+      "label": "PLATFORM TEAM",
       "title": "Platform teams evaluating build vs buy",
       "desc": "Multi-tenant + approval governance + self-deployable. No data lock-in."
     },
     "personaC": {
+      "label": "CREATOR / EDUCATOR",
       "title": "AI educators & creators",
       "desc": "Workflow visualization + call receipts + tier quotas. Demo / teach without burning your wallet."
     },
     "personaD": {
+      "label": "INDIE OPERATOR",
       "title": "Indie operators on the road",
       "desc": "One-click deploy + heartbeat monitoring + error retry. Remove ops from your headspace."
     }
   },
   "Section3": {
-    "title": "Core capabilities",
-    "subtitle": "Three-layer backbone + 5 official MCP servers preinstalled + 1300+ npm ecosystem.",
+    "eyebrow": "02 · WHAT IT DOES",
+    "title": "Three-layer backbone + tool governance.",
+    "subtitle": "ACM doesn't write your agents. ACM is the 'management' layer once they're running.",
     "cap1Title": "Multi-agent workflow engine",
     "cap1Desc": "DAG topology + completion hook + edge conditions. e.g. customer query → risk approval → ticket creation, declaratively composed.",
     "cap2Title": "Tool call governance",
     "cap2Desc": "tool-proxy interception + approval gate + tier quotas. High-risk actions go through human approval, low-risk pass through.",
     "cap3Title": "Heartbeat + scheduled tasks",
     "cap3Desc": "heartbeat scheduler + cron. Run daily report agent at 9am; auto-alert on failure.",
+    "mcpEyebrow": "TOOL GOVERNANCE",
     "hubLabel": "ACM Hub",
     "hubSubtitle": "tools + governance",
-    "mcpHeadline": "5 official MCP servers preinstalled",
-    "mcpFootnote": "Install any npm/uv MCP server via mcp_installer with one click. Based on the official ModelContextProtocol package ecosystem (1300+ third-party servers available).",
-    "mcpLink": "Browse MCP Server catalog ↗",
+    "mcpHeadline": "5 official MCP servers preinstalled. Half require approval by default.",
+    "mcpFootnote": "Install any npm/uv MCP server via mcp_installer with one click. Based on the official ModelContextProtocol ecosystem (1300+ third-party servers available).",
+    "mcpLink": "Browse MCP Server catalog",
     "servers": {
       "filesystem": { "name": "File System", "desc": "local file r/w", "risk": "medium" },
       "fetch": { "name": "HTTP Fetch", "desc": "external HTTP", "risk": "high", "needsApproval": "approval required" },
@@ -71,60 +86,64 @@
     "riskLabel": { "low": "low risk", "medium": "medium risk", "high": "high risk" }
   },
   "Section4": {
-    "title": "Roadmap — transparent",
-    "subtitle": "✅ Based on real codebase audit (47 modules). No fairy tales.",
+    "eyebrow": "03 · ROADMAP",
+    "title": "Audit-based. No fairy tales.",
+    "subtitle": "✅ Based on real codebase audit (47 modules). Every line maps to git log.",
     "now": {
       "label": "Now live",
       "emoji": "🟢",
-      "tag": "V1-A live",
+      "tag": "V1-A LIVE",
       "item1": "Multi-agent governance: tool-proxy + approval gate + call receipts + audit log",
       "item2": "Workflow DAG engine: 4 agent roles + 4 execution modes",
       "item3": "AI-assisted workflow creation: PM Agent natural-language dialog → plan → apply",
       "item4": "24h heartbeat scheduling: heartbeat-engine + cron + timeout sweep",
       "item5": "MCP tool ecosystem: 5 official servers preinstalled + 1300+ npm installable",
-      "item6": "Multi-tenant + team workspace: independent tenant + roles + knowledge persistence",
+      "item6": "Multi-tenant + team workspace: independent tenant + roles + knowledge",
       "item7": "2 business domain templates (POC): vacation rental ops / travel ops"
     },
     "soon": {
       "label": "Coming 6 months",
       "emoji": "🔨",
-      "tag": "V1.10 - V1.11",
+      "tag": "V1.10 — V1.11",
       "item1": "Self-serve activation + invite system (V1.10 current milestone)",
-      "item2": "GitHub OSS + one-click self-deploy script (deploy_hetzner.sh 80% done)",
-      "item3": "Swappable LLM backends (Volcengine / Anthropic / OpenAI / China-domestic)",
-      "item4": "Tenant-level quota enforcement + cost alerts (prevent runaway burn)",
-      "item5": "More business domain templates (e-commerce / customer service / content production)",
+      "item2": "GitHub OSS + one-click self-deploy script",
+      "item3": "Swappable LLM backends (Volcengine / Anthropic / OpenAI / domestic)",
+      "item4": "Tenant-level quota enforcement + cost alerts",
+      "item5": "More business domain templates (e-commerce / CS / content)",
       "item6": "Error recovery + business continuity patterns",
       "item7": "Streaming UI (token-by-token feedback)"
     },
     "future": {
       "label": "Future vision",
       "emoji": "🌅",
-      "tag": "V1.x+, no time commitment",
+      "tag": "V1.X+ NO COMMITMENT",
       "item1": "True 'unattended 24h AI company'",
       "item2": "Manager agent auto-orchestrating other agents",
       "item3": "Business KPI dashboard + agent OKR",
-      "item4": "Cross-tenant agent collaboration (companies subcontract agents)",
+      "item4": "Cross-tenant agent collaboration",
       "item5": "Community marketplace (agent / workflow templates)"
     },
     "wishlist": {
-      "title": "Wanted",
+      "eyebrow": "WANTED · INPUT NEEDED",
+      "title": "Vote shapes the next MCP server priority.",
       "desc": "Which SaaS would you most want as an MCP server next?",
       "candidates": "Feishu / WeCom / DingTalk / Xiaohongshu / WeChat Pay / Yuque ...",
-      "footnote": "Your votes shape the next adapter priority.",
-      "cta": "Nominate + vote →"
+      "footnote": "Your votes drive the V1.11+ adapter order.",
+      "cta": "Nominate + vote"
     }
   },
   "Section5": {
-    "title": "About",
+    "eyebrow": "04 · ABOUT",
+    "title": "Why I built ACM",
     "line1": "I'm the author of ACM. Former game PM, now a digital nomad —",
     "line2": "building from the road, running a one-person company.",
     "line3": "I believe AI shouldn't replace life; it should give you more of it.",
     "line4": "ACM is the tool I built for that path."
   },
   "Section6": {
-    "title": "FAQ",
-    "subtitle": "5 common questions.",
+    "eyebrow": "05 · FAQ",
+    "title": "5 common questions",
+    "subtitle": "PO selected.",
     "numberingNote": "Numbering preserves PO Q4 original IDs (F5/F6/F7 not selected — decision: ship to docs, not landing).",
     "F1": {
       "q": "Can I self-deploy ACM? Will my data stay on my server?",
@@ -176,8 +195,8 @@
     "backToHome": "← Back to home"
   },
   "Footer": {
-    "builtWith": "Built with Claude Code",
-    "github": "GitHub",
+    "builtWith": "BUILT WITH CLAUDE CODE",
+    "github": "GITHUB",
     "openCore": "Open Core: free to self-host, pay only for cloud + tokens"
   }
 }

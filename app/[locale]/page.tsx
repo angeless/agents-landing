@@ -6,106 +6,237 @@ import {
   Brain,
   Monitor,
   Shield,
+  Briefcase,
+  Sparkles,
+  Compass,
+  ArrowRight,
 } from "lucide-react";
 
 /**
- * V1-A Landing 主页 — Task 4.2 完整版（A1 + A2 + A3）
+ * V1-A Landing 主页 — v2.0 redesign per DESIGN.md "Cosmic Lab"
  *
- * 视觉规范见 brief §12（ACM 主仓 docs/product/v1-a-landing-brief.md v3 frozen）。
- *
- * 章节布局：
- *   §12.2 Hero — Asset Defense 主基底 + 浮动 3 张 AI 公司卡
- *   §5 Section 2 — 三类受众 (B / C / D persona)
- *   §5 Section 3 + §12.5 OQ10 — 核心能力 + 5 MCP 官方 server 中心-星座
- *   §5 Section 4 — Roadmap 三段（now / soon / future）+ 征集中段
- *   §5 Section 5 — About（作者自述，纯文字）
- *   §5 Section 6 — FAQ（F1/F2/F3/F4/F8）
- *   §6 Footer — Built with Claude Code + Open Core
+ * 调性：Black-space brutalism + AI-native cosmic glow
+ * 参照：LayerZero / Anthropic claude.ai / Replicate
+ * 见根目录 DESIGN.md 完整 spec + rationale
  */
 export default function HomePage() {
   return (
     <>
       <HeroSection />
+      <CosmicDivider />
       <Section2 />
+      <CosmicDivider />
       <Section3 />
+      <CosmicDivider />
       <Section4 />
+      <CosmicDivider />
       <Section5 />
+      <CosmicDivider />
       <Section6 />
       <Footer />
     </>
   );
 }
 
+function CosmicDivider() {
+  return <hr className="cosmic-divider mx-auto max-w-6xl" />;
+}
+
 /* ============================================================
-   Hero Section — Brief §12.2 Asset Defense 主基底 + §12.5 OQ8 浮动 3 卡
+   COSMIC DECORATION (SVG) — Hero floating orbits + dots
+   ============================================================ */
+
+function CosmicDecoration() {
+  return (
+    <svg
+      aria-hidden
+      className="absolute inset-0 w-full h-full pointer-events-none"
+      preserveAspectRatio="xMidYMid slice"
+      viewBox="0 0 1440 900"
+    >
+      <defs>
+        <radialGradient id="dot-grad" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#00d9ff" stopOpacity="0.8" />
+          <stop offset="100%" stopColor="#00d9ff" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+
+      {/* Scattered dots */}
+      {[
+        [120, 180, 1.5],
+        [240, 720, 2],
+        [380, 120, 1],
+        [540, 640, 1.5],
+        [780, 200, 1],
+        [920, 740, 2],
+        [1080, 160, 1.5],
+        [1280, 580, 1],
+        [1320, 300, 1.5],
+        [180, 460, 1],
+      ].map(([x, y, r], i) => (
+        <circle
+          key={i}
+          cx={x}
+          cy={y}
+          r={r}
+          fill="url(#dot-grad)"
+          opacity={0.4 + (i % 3) * 0.15}
+        />
+      ))}
+
+      {/* Orbit arcs (subtle) */}
+      <ellipse
+        cx="720"
+        cy="450"
+        rx="540"
+        ry="220"
+        fill="none"
+        stroke="#ffffff"
+        strokeOpacity="0.04"
+        strokeWidth="1"
+        strokeDasharray="2 8"
+      />
+      <ellipse
+        cx="720"
+        cy="450"
+        rx="360"
+        ry="140"
+        fill="none"
+        stroke="#00d9ff"
+        strokeOpacity="0.08"
+        strokeWidth="1"
+        strokeDasharray="3 6"
+      />
+    </svg>
+  );
+}
+
+/* ============================================================
+   HERO SECTION — Cosmic Lab 主基底 + 浮动 3 张 AI 公司卡
    ============================================================ */
 
 function HeroSection() {
   const t = useTranslations("HomePage");
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-6 py-24">
-      <div
-        aria-hidden
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(circle at center, rgba(0,217,255,0.08) 0%, transparent 60%)",
-        }}
-      />
+    <section className="cosmic-hero-bg relative min-h-screen flex items-center justify-center overflow-hidden px-6 py-32">
+      <CosmicDecoration />
 
       <LifeCard />
       <TourismCard />
       <CreateCard />
 
-      <div className="relative z-10 max-w-3xl text-center space-y-6 animate-fade-in">
+      <div className="relative z-10 max-w-4xl text-center space-y-10 animate-fade-in">
+        {/* Top eyebrow chip */}
+        <div className="flex justify-center">
+          <span
+            className="mono-chip-neon inline-flex items-center gap-2 px-3 py-1 rounded-full border"
+            style={{ borderColor: "var(--cosmic-border)", backgroundColor: "var(--cosmic-panel)" }}
+          >
+            <span
+              className="inline-block w-1.5 h-1.5 rounded-full pulse-dot"
+              style={{ backgroundColor: "var(--cosmic-neon)" }}
+            />
+            {t("eyebrow")}
+          </span>
+        </div>
+
+        {/* Display headline with neon-highlight keywords */}
         <h1
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight"
-          style={{ color: "var(--acm-text-primary)" }}
+          className="font-bold tracking-tight leading-[0.95]"
+          style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(2.5rem, 7vw, 5.5rem)",
+            letterSpacing: "-0.04em",
+            color: "var(--cosmic-text-primary)",
+          }}
         >
-          {t("headline")}
+          {t.rich("headlinePart1", {
+            neon: (chunks) => <span className="neon-highlight">{chunks}</span>,
+          })}
+          <br />
+          {t.rich("headlinePart2", {
+            neon: (chunks) => <span className="neon-highlight">{chunks}</span>,
+          })}
         </h1>
+
+        {/* Subhead */}
         <p
-          className="text-base md:text-lg lg:text-xl leading-relaxed"
-          style={{ color: "var(--acm-text-secondary)" }}
+          className="max-w-2xl mx-auto leading-relaxed"
+          style={{
+            fontSize: "clamp(1rem, 1.5vw, 1.25rem)",
+            color: "var(--cosmic-text-secondary)",
+          }}
         >
           {t("subhead")}
         </p>
+
+        {/* For whom */}
         <p
-          className="text-sm italic"
-          style={{ color: "var(--acm-text-secondary)" }}
+          className="text-sm"
+          style={{ color: "var(--cosmic-text-muted)" }}
         >
           {t("forWhom")}
         </p>
-        <div className="pt-6 flex flex-col sm:flex-row gap-4 justify-center items-center">
+
+        {/* CTAs */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-2">
           <a
             href="/apply"
-            className="neon-glow inline-block px-8 py-3 rounded-md font-medium transition-transform hover:scale-105"
+            className="group inline-flex items-center gap-2 px-8 py-3.5 rounded font-medium transition-all hover:scale-[1.03]"
             style={{
-              backgroundColor: "var(--acm-accent)",
-              color: "var(--acm-on-accent)",
+              backgroundColor: "var(--cosmic-neon)",
+              color: "var(--cosmic-ink)",
+              boxShadow: "0 0 32px #00d9ff50, 0 8px 24px #00000050",
             }}
           >
             {t("cta")}
+            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
           </a>
           <a
             href="#features"
-            className="inline-block px-8 py-3 rounded-md font-medium border transition-colors hover:bg-white/5"
+            className="inline-block px-8 py-3.5 rounded font-medium border transition-colors hover:bg-white/5"
             style={{
-              borderColor: "var(--acm-border-light)",
-              color: "var(--acm-text-primary)",
+              borderColor: "var(--cosmic-border)",
+              color: "var(--cosmic-text-primary)",
             }}
           >
             {t("ctaSecondary")}
           </a>
+        </div>
+
+        {/* Stats row */}
+        <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 pt-12">
+          <Stat value={t("stat1Value")} label={t("stat1Label")} />
+          <span className="hidden md:inline" style={{ color: "var(--cosmic-text-muted)" }}>·</span>
+          <Stat value={t("stat2Value")} label={t("stat2Label")} />
+          <span className="hidden md:inline" style={{ color: "var(--cosmic-text-muted)" }}>·</span>
+          <Stat value={t("stat3Value")} label={t("stat3Label")} />
         </div>
       </div>
     </section>
   );
 }
 
+function Stat({ value, label }: { value: string; label: string }) {
+  return (
+    <div className="text-center">
+      <div
+        className="text-2xl font-bold"
+        style={{
+          fontFamily: "var(--font-display)",
+          color: "var(--cosmic-text-primary)",
+        }}
+      >
+        {value}
+      </div>
+      <div className="mono-chip mt-1">{label}</div>
+    </div>
+  );
+}
+
 /* ============================================================
-   Floating Company Cards — Brief §12.5 OQ8 1:1 取自 playbook.yaml
+   FLOATING AI COMPANY CARDS — brief §12.5 OQ8
    ============================================================ */
 
 function LifeCard() {
@@ -115,7 +246,8 @@ function LifeCard() {
       title={t("title")}
       tasks={[t("task1"), t("task2"), t("task3")]}
       tag={t("tag")}
-      positionClass="hidden md:block absolute top-[10%] left-[3%] lg:left-[6%]"
+      positionClass="hidden lg:block absolute top-[18%] left-[3%] xl:left-[6%]"
+      delay="100ms"
     />
   );
 }
@@ -127,7 +259,8 @@ function TourismCard() {
       title={t("title")}
       tasks={[t("task1"), t("task2"), t("task3"), t("task4")]}
       tag={t("tag")}
-      positionClass="hidden md:block absolute top-[14%] right-[3%] lg:right-[6%]"
+      positionClass="hidden lg:block absolute top-[22%] right-[3%] xl:right-[6%]"
+      delay="200ms"
     />
   );
 }
@@ -136,21 +269,17 @@ function CreateCard() {
   const t = useTranslations("HomePage.heroCards.create");
   return (
     <div
-      className="hidden lg:block absolute bottom-[10%] left-1/2 -translate-x-1/2 max-w-[280px] rounded-lg border p-4 animate-slide-in-up neon-glow"
+      className="hidden xl:block absolute bottom-[12%] left-1/2 -translate-x-1/2 max-w-[280px] rounded-md border p-5 animate-slide-in-up neon-glow"
       style={{
-        backgroundColor: "var(--acm-bg-panel)",
-        borderColor: "var(--acm-border-light)",
+        animationDelay: "300ms",
+        backgroundColor: "var(--cosmic-panel-elevated)",
+        borderColor: "var(--cosmic-border)",
       }}
     >
-      <div
-        className="text-sm font-semibold mb-2"
-        style={{ color: "var(--acm-accent)" }}
-      >
-        {t("title")}
-      </div>
+      <div className="mono-chip-neon mb-3">{t("title")}</div>
       <ul
-        className="text-xs space-y-1 mb-3"
-        style={{ color: "var(--acm-text-secondary)" }}
+        className="text-sm space-y-1.5 mb-4 leading-relaxed"
+        style={{ color: "var(--cosmic-text-secondary)" }}
       >
         <li>· {t("line1")}</li>
         <li>· {t("line2")}</li>
@@ -158,15 +287,12 @@ function CreateCard() {
       </ul>
       <a
         href="/apply"
-        className="text-xs font-medium hover:underline"
-        style={{ color: "var(--acm-accent)" }}
+        className="inline-flex items-center gap-1.5 text-sm font-medium hover:gap-2 transition-all"
+        style={{ color: "var(--cosmic-neon)" }}
       >
-        {t("cta")}
+        {t("cta")} <ArrowRight className="w-3.5 h-3.5" />
       </a>
-      <div
-        className="text-xs mt-2"
-        style={{ color: "var(--acm-text-secondary)" }}
-      >
+      <div className="mono-chip mt-3 pt-3 border-t" style={{ borderColor: "var(--cosmic-ghost)" }}>
         {t("tag")}
       </div>
     </div>
@@ -178,38 +304,38 @@ function CompanyCard({
   tasks,
   tag,
   positionClass,
+  delay,
 }: {
   title: string;
   tasks: string[];
   tag: string;
   positionClass: string;
+  delay: string;
 }) {
   return (
     <div
-      className={`${positionClass} max-w-[260px] rounded-lg border p-4 animate-slide-in-up neon-glow`}
+      className={`${positionClass} max-w-[260px] rounded-md border p-5 animate-slide-in-up neon-glow`}
       style={{
-        backgroundColor: "var(--acm-bg-panel)",
-        borderColor: "var(--acm-border-light)",
+        animationDelay: delay,
+        backgroundColor: "var(--cosmic-panel-elevated)",
+        borderColor: "var(--cosmic-ghost)",
       }}
     >
       <div
-        className="text-sm font-semibold mb-2"
-        style={{ color: "var(--acm-text-primary)" }}
+        className="text-sm font-semibold mb-3"
+        style={{ color: "var(--cosmic-text-primary)" }}
       >
         {title}
       </div>
       <ul
-        className="text-xs space-y-1 mb-3"
-        style={{ color: "var(--acm-text-secondary)" }}
+        className="text-xs space-y-1.5 mb-3 leading-relaxed"
+        style={{ color: "var(--cosmic-text-secondary)" }}
       >
         {tasks.map((task, i) => (
           <li key={i}>· {task}</li>
         ))}
       </ul>
-      <div
-        className="text-xs"
-        style={{ color: "var(--acm-text-secondary)" }}
-      >
+      <div className="mono-chip pt-3 border-t" style={{ borderColor: "var(--cosmic-ghost)" }}>
         {tag}
       </div>
     </div>
@@ -217,61 +343,98 @@ function CompanyCard({
 }
 
 /* ============================================================
-   Section 2 — 三类受众（Brief §5 Section 2）
+   SECTION 2 — 三类受众
    ============================================================ */
 
 function Section2() {
   const t = useTranslations("Section2");
+  const personas = [
+    { key: "personaB", Icon: Briefcase },
+    { key: "personaC", Icon: Sparkles },
+    { key: "personaD", Icon: Compass },
+  ] as const;
+
   return (
-    <section className="py-20 px-6" id="features">
+    <section
+      id="features"
+      className="py-32 px-6"
+      style={{ backgroundColor: "var(--cosmic-ink)" }}
+    >
       <div className="max-w-6xl mx-auto">
-        <header className="text-center mb-12 space-y-3">
+        <header className="mb-20 max-w-3xl">
+          <div className="mono-chip-neon mb-4">{t("eyebrow")}</div>
           <h2
-            className="text-3xl md:text-4xl font-bold tracking-tight"
-            style={{ color: "var(--acm-text-primary)" }}
+            className="font-bold tracking-tight mb-4"
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: "clamp(2rem, 4vw, 3rem)",
+              letterSpacing: "-0.02em",
+              color: "var(--cosmic-text-primary)",
+            }}
           >
             {t("title")}
           </h2>
-          <p style={{ color: "var(--acm-text-secondary)" }}>{t("subtitle")}</p>
+          <p
+            className="text-lg leading-relaxed"
+            style={{ color: "var(--cosmic-text-secondary)" }}
+          >
+            {t("subtitle")}
+          </p>
         </header>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <PersonaCard
-            title={t("personaB.title")}
-            desc={t("personaB.desc")}
-          />
-          <PersonaCard
-            title={t("personaC.title")}
-            desc={t("personaC.desc")}
-          />
-          <PersonaCard
-            title={t("personaD.title")}
-            desc={t("personaD.desc")}
-          />
+          {personas.map(({ key, Icon }, i) => (
+            <PersonaCard
+              key={key}
+              Icon={Icon}
+              label={t(`${key}.label`)}
+              title={t(`${key}.title`)}
+              desc={t(`${key}.desc`)}
+              delay={`${i * 100}ms`}
+            />
+          ))}
         </div>
       </div>
     </section>
   );
 }
 
-function PersonaCard({ title, desc }: { title: string; desc: string }) {
+function PersonaCard({
+  Icon,
+  label,
+  title,
+  desc,
+  delay,
+}: {
+  Icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>;
+  label: string;
+  title: string;
+  desc: string;
+  delay: string;
+}) {
   return (
     <div
-      className="rounded-lg border p-6 animate-fade-in"
+      className="rounded-md border p-8 animate-slide-in-up"
       style={{
-        backgroundColor: "var(--acm-bg-panel)",
-        borderColor: "var(--acm-border-light)",
+        animationDelay: delay,
+        backgroundColor: "var(--cosmic-panel)",
+        borderColor: "var(--cosmic-ghost)",
       }}
     >
+      <Icon
+        className="w-8 h-8 mb-6"
+        style={{ color: "var(--cosmic-neon)" }}
+      />
+      <div className="mono-chip mb-3">{label}</div>
       <h3
-        className="text-lg font-semibold mb-3"
-        style={{ color: "var(--acm-text-primary)" }}
+        className="text-xl font-semibold mb-3 leading-tight"
+        style={{ color: "var(--cosmic-text-primary)" }}
       >
         {title}
       </h3>
       <p
         className="text-sm leading-relaxed"
-        style={{ color: "var(--acm-text-secondary)" }}
+        style={{ color: "var(--cosmic-text-secondary)" }}
       >
         {desc}
       </p>
@@ -280,73 +443,89 @@ function PersonaCard({ title, desc }: { title: string; desc: string }) {
 }
 
 /* ============================================================
-   Section 3 — 核心能力 + 5 MCP server 中心-星座 motif
-   Brief §5 Section 3 + §12.5 OQ10 + §12.2 Section 3 视觉决策
+   SECTION 3 — 核心能力 + 5 MCP server (中心-星座 motif)
    ============================================================ */
 
 function Section3() {
   const t = useTranslations("Section3");
   return (
-    <section className="relative py-20 px-6 canvas-grid">
-      <div className="max-w-6xl mx-auto space-y-16">
-        <header className="text-center space-y-3">
+    <section
+      className="py-32 px-6 canvas-grid"
+      style={{ backgroundColor: "var(--cosmic-panel)" }}
+    >
+      <div className="max-w-6xl mx-auto space-y-20">
+        <header className="max-w-3xl">
+          <div className="mono-chip-neon mb-4">{t("eyebrow")}</div>
           <h2
-            className="text-3xl md:text-4xl font-bold tracking-tight"
-            style={{ color: "var(--acm-text-primary)" }}
+            className="font-bold tracking-tight mb-4"
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: "clamp(2rem, 4vw, 3rem)",
+              letterSpacing: "-0.02em",
+              color: "var(--cosmic-text-primary)",
+            }}
           >
             {t("title")}
           </h2>
           <p
-            className="text-base"
-            style={{ color: "var(--acm-text-secondary)" }}
+            className="text-lg leading-relaxed"
+            style={{ color: "var(--cosmic-text-secondary)" }}
           >
             {t("subtitle")}
           </p>
         </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <CapabilityBullet title={t("cap1Title")} desc={t("cap1Desc")} />
-          <CapabilityBullet title={t("cap2Title")} desc={t("cap2Desc")} />
-          <CapabilityBullet title={t("cap3Title")} desc={t("cap3Desc")} />
+        {/* 3 capability bullets */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <CapabilityBullet num="01" title={t("cap1Title")} desc={t("cap1Desc")} />
+          <CapabilityBullet num="02" title={t("cap2Title")} desc={t("cap2Desc")} />
+          <CapabilityBullet num="03" title={t("cap3Title")} desc={t("cap3Desc")} />
         </div>
 
-        <div className="pt-8 space-y-8">
-          <div className="text-center space-y-2">
+        {/* ACM Hub + 5 MCP server constellation */}
+        <div className="pt-12 space-y-12">
+          <div className="text-center max-w-2xl mx-auto space-y-3">
+            <div className="mono-chip-neon">{t("mcpEyebrow")}</div>
             <h3
-              className="text-xl md:text-2xl font-semibold"
-              style={{ color: "var(--acm-text-primary)" }}
+              className="font-semibold"
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "clamp(1.5rem, 3vw, 2rem)",
+                color: "var(--cosmic-text-primary)",
+              }}
             >
               {t("mcpHeadline")}
             </h3>
           </div>
 
+          {/* ACM Hub badge */}
           <div className="flex justify-center">
             <div
-              className="inline-flex flex-col items-center px-6 py-4 rounded-full border-2 neon-glow"
+              className="inline-flex flex-col items-center px-8 py-5 rounded-full border-2"
               style={{
-                backgroundColor: "var(--acm-bg-panel)",
-                borderColor: "var(--acm-accent)",
+                backgroundColor: "var(--cosmic-panel-elevated)",
+                borderColor: "var(--cosmic-neon)",
+                boxShadow: "0 0 40px #00d9ff30, inset 0 0 20px #00d9ff10",
               }}
             >
               <Shield
-                className="w-8 h-8 mb-1"
-                style={{ color: "var(--acm-accent)" }}
+                className="w-10 h-10 mb-2"
+                style={{ color: "var(--cosmic-neon)" }}
               />
               <div
-                className="text-sm font-bold"
-                style={{ color: "var(--acm-accent)" }}
+                className="text-base font-bold tracking-wide"
+                style={{
+                  fontFamily: "var(--font-display)",
+                  color: "var(--cosmic-neon)",
+                }}
               >
                 {t("hubLabel")}
               </div>
-              <div
-                className="text-xs"
-                style={{ color: "var(--acm-text-secondary)" }}
-              >
-                {t("hubSubtitle")}
-              </div>
+              <div className="mono-chip mt-0.5">{t("hubSubtitle")}</div>
             </div>
           </div>
 
+          {/* 5 MCP server cards */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
             <MCPServerCard server="filesystem" Icon={Folder} />
             <MCPServerCard server="fetch" Icon={Globe} />
@@ -355,10 +534,11 @@ function Section3() {
             <MCPServerCard server="puppeteer" Icon={Monitor} />
           </div>
 
-          <div className="pt-4 text-center space-y-2 max-w-2xl mx-auto">
+          {/* footnote + link */}
+          <div className="text-center max-w-2xl mx-auto space-y-3 pt-6">
             <p
               className="text-sm leading-relaxed"
-              style={{ color: "var(--acm-text-secondary)" }}
+              style={{ color: "var(--cosmic-text-secondary)" }}
             >
               {t("mcpFootnote")}
             </p>
@@ -366,10 +546,10 @@ function Section3() {
               href="https://github.com/modelcontextprotocol/servers"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block text-sm font-medium hover:underline"
-              style={{ color: "var(--acm-accent)" }}
+              className="inline-flex items-center gap-1.5 text-sm font-medium hover:gap-2 transition-all"
+              style={{ color: "var(--cosmic-neon)" }}
             >
-              {t("mcpLink")}
+              {t("mcpLink")} <ArrowRight className="w-3.5 h-3.5" />
             </a>
           </div>
         </div>
@@ -378,18 +558,36 @@ function Section3() {
   );
 }
 
-function CapabilityBullet({ title, desc }: { title: string; desc: string }) {
+function CapabilityBullet({
+  num,
+  title,
+  desc,
+}: {
+  num: string;
+  title: string;
+  desc: string;
+}) {
   return (
-    <div className="space-y-2 animate-slide-in-up">
+    <div className="space-y-3 animate-slide-in-up">
+      <div
+        className="text-3xl font-bold"
+        style={{
+          fontFamily: "var(--font-mono)",
+          color: "var(--cosmic-neon)",
+          opacity: 0.6,
+        }}
+      >
+        {num}
+      </div>
       <h3
-        className="text-base font-semibold"
-        style={{ color: "var(--acm-text-primary)" }}
+        className="text-lg font-semibold leading-snug"
+        style={{ color: "var(--cosmic-text-primary)" }}
       >
         {title}
       </h3>
       <p
         className="text-sm leading-relaxed"
-        style={{ color: "var(--acm-text-secondary)" }}
+        style={{ color: "var(--cosmic-text-secondary)" }}
       >
         {desc}
       </p>
@@ -409,45 +607,45 @@ function MCPServerCard({
   const risk = t("risk") as "low" | "medium" | "high";
 
   const riskStyle = {
-    low: { backgroundColor: "#6b728033", color: "#9ca3af" },
+    low: { backgroundColor: "#4a4f5833", color: "#8a8f98" },
     medium: { backgroundColor: "#3b82f633", color: "#60a5fa" },
     high: { backgroundColor: "#f59e0b33", color: "#fbbf24" },
   }[risk];
 
   return (
     <div
-      className="rounded-lg border p-4 text-center space-y-2 transition-transform hover:scale-105"
+      className="rounded-md border p-5 text-center space-y-3 transition-all hover:-translate-y-1 hover:border-cosmic-neon/40"
       style={{
-        backgroundColor: "var(--acm-bg-panel)",
-        borderColor: "var(--acm-border-light)",
+        backgroundColor: "var(--cosmic-panel-elevated)",
+        borderColor: "var(--cosmic-ghost)",
       }}
     >
       <Icon
-        className="w-8 h-8 mx-auto"
-        style={{ color: "var(--acm-text-primary)" }}
+        className="w-7 h-7 mx-auto"
+        style={{ color: "var(--cosmic-text-primary)" }}
       />
       <div
         className="text-sm font-semibold"
-        style={{ color: "var(--acm-text-primary)" }}
+        style={{ color: "var(--cosmic-text-primary)" }}
       >
         {t("name")}
       </div>
       <div
-        className="text-xs"
-        style={{ color: "var(--acm-text-secondary)" }}
+        className="text-xs leading-relaxed"
+        style={{ color: "var(--cosmic-text-muted)" }}
       >
         {t("desc")}
       </div>
       <div
-        className="inline-block text-xs px-2 py-0.5 rounded font-medium"
+        className="inline-block text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded"
         style={riskStyle}
       >
         {tRisk(risk)}
       </div>
       {risk === "high" && (
         <div
-          className="text-xs italic"
-          style={{ color: "var(--acm-text-secondary)" }}
+          className="mono-chip pt-2 border-t"
+          style={{ borderColor: "var(--cosmic-ghost)", color: "var(--cosmic-warning)" }}
         >
           ⚠ {t("needsApproval")}
         </div>
@@ -457,25 +655,40 @@ function MCPServerCard({
 }
 
 /* ============================================================
-   Section 4 — Roadmap 三段 + 征集中（Brief §5 Section 4 + §12.5 OQ10）
+   SECTION 4 — Roadmap 三段 + Wishlist
    ============================================================ */
 
 function Section4() {
   const t = useTranslations("Section4");
   return (
-    <section className="py-20 px-6" id="roadmap">
-      <div className="max-w-6xl mx-auto space-y-12">
-        <header className="text-center space-y-3">
+    <section
+      id="roadmap"
+      className="py-32 px-6"
+      style={{ backgroundColor: "var(--cosmic-ink)" }}
+    >
+      <div className="max-w-6xl mx-auto space-y-16">
+        <header className="max-w-3xl">
+          <div className="mono-chip-neon mb-4">{t("eyebrow")}</div>
           <h2
-            className="text-3xl md:text-4xl font-bold tracking-tight"
-            style={{ color: "var(--acm-text-primary)" }}
+            className="font-bold tracking-tight mb-4"
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: "clamp(2rem, 4vw, 3rem)",
+              letterSpacing: "-0.02em",
+              color: "var(--cosmic-text-primary)",
+            }}
           >
             {t("title")}
           </h2>
-          <p style={{ color: "var(--acm-text-secondary)" }}>{t("subtitle")}</p>
+          <p
+            className="text-lg leading-relaxed"
+            style={{ color: "var(--cosmic-text-secondary)" }}
+          >
+            {t("subtitle")}
+          </p>
         </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           <RoadmapColumn
             namespace="Section4.now"
             itemKeys={["item1", "item2", "item3", "item4", "item5", "item6", "item7"]}
@@ -508,40 +721,35 @@ function RoadmapColumn({
 }) {
   const t = useTranslations(namespace);
   return (
-    <div className="space-y-4">
-      <div className="flex items-center gap-2">
-        <span className="text-2xl">{t("emoji")}</span>
-        <div>
+    <div className="space-y-5">
+      <div className="space-y-2 pb-4 border-b" style={{ borderColor: "var(--cosmic-ghost)" }}>
+        <div className="flex items-center gap-3">
+          <span className="text-2xl">{t("emoji")}</span>
           <h3
-            className="text-lg font-semibold"
-            style={{ color: "var(--acm-text-primary)" }}
+            className="text-base font-semibold tracking-tight"
+            style={{ color: "var(--cosmic-text-primary)" }}
           >
             {t("label")}
           </h3>
-          <div
-            className="text-xs"
-            style={{ color: "var(--acm-text-secondary)" }}
-          >
-            {t("tag")}
-          </div>
         </div>
+        <div className="mono-chip pl-9">{t("tag")}</div>
       </div>
-      <ul className="space-y-2">
+      <ul className="space-y-3">
         {itemKeys.map((key) => (
           <li
             key={key}
-            className="text-sm leading-relaxed flex items-start gap-2"
-            style={{ color: "var(--acm-text-secondary)" }}
+            className="text-sm leading-relaxed flex items-start gap-3"
+            style={{ color: "var(--cosmic-text-secondary)" }}
           >
-            {withPulse && (
+            {withPulse ? (
               <span
                 className="pulse-dot mt-1.5 inline-block w-1.5 h-1.5 rounded-full flex-shrink-0"
-                style={{ backgroundColor: "var(--acm-accent)" }}
+                style={{ backgroundColor: "var(--cosmic-neon)" }}
               />
-            )}
-            {!withPulse && (
-              <span className="mt-1.5 inline-block w-1 h-1 rounded-full flex-shrink-0"
-                style={{ backgroundColor: "var(--acm-text-secondary)" }}
+            ) : (
+              <span
+                className="mt-2 inline-block w-1 h-1 rounded-full flex-shrink-0"
+                style={{ backgroundColor: "var(--cosmic-text-muted)" }}
               />
             )}
             <span>{t(key)}</span>
@@ -556,112 +764,149 @@ function Wishlist() {
   const t = useTranslations("Section4.wishlist");
   return (
     <div
-      className="rounded-lg border p-6 max-w-2xl mx-auto space-y-3 animate-fade-in"
+      className="rounded-md border p-8 max-w-3xl mx-auto space-y-4 animate-fade-in"
       style={{
-        backgroundColor: "var(--acm-bg-panel)",
-        borderColor: "var(--acm-border-light)",
+        backgroundColor: "var(--cosmic-panel)",
+        borderColor: "var(--cosmic-border)",
+        boxShadow: "0 0 32px #00d9ff10",
       }}
     >
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-3">
         <span
           className="pulse-dot inline-block w-2 h-2 rounded-full"
-          style={{ backgroundColor: "var(--acm-accent)" }}
+          style={{ backgroundColor: "var(--cosmic-neon)" }}
         />
-        <h3
-          className="text-base font-semibold"
-          style={{ color: "var(--acm-text-primary)" }}
-        >
-          {t("title")}
-        </h3>
+        <div className="mono-chip-neon">{t("eyebrow")}</div>
       </div>
+      <h3
+        className="text-xl font-semibold leading-tight"
+        style={{
+          fontFamily: "var(--font-display)",
+          color: "var(--cosmic-text-primary)",
+        }}
+      >
+        {t("title")}
+      </h3>
       <p
-        className="text-sm leading-relaxed"
-        style={{ color: "var(--acm-text-secondary)" }}
+        className="text-base leading-relaxed"
+        style={{ color: "var(--cosmic-text-secondary)" }}
       >
         {t("desc")}
       </p>
       <p
-        className="text-sm font-mono"
-        style={{ color: "var(--acm-text-primary)" }}
+        className="font-mono text-sm"
+        style={{ color: "var(--cosmic-text-primary)" }}
       >
         {t("candidates")}
       </p>
       <p
-        className="text-xs italic"
-        style={{ color: "var(--acm-text-secondary)" }}
+        className="text-xs"
+        style={{ color: "var(--cosmic-text-muted)" }}
       >
         {t("footnote")}
       </p>
       <a
         href="/wishlist"
-        className="inline-block text-sm font-medium hover:underline"
-        style={{ color: "var(--acm-accent)" }}
+        className="inline-flex items-center gap-1.5 text-sm font-medium hover:gap-2 transition-all"
+        style={{ color: "var(--cosmic-neon)" }}
       >
-        {t("cta")}
+        {t("cta")} <ArrowRight className="w-3.5 h-3.5" />
       </a>
     </div>
   );
 }
 
 /* ============================================================
-   Section 5 — About（Brief §5 Section 5，单栏纯文字）
+   SECTION 5 — About (作者自述)
    ============================================================ */
 
 function Section5() {
   const t = useTranslations("Section5");
   return (
-    <section className="py-20 px-6" id="about">
-      <div className="max-w-2xl mx-auto text-center space-y-4 animate-fade-in">
+    <section
+      id="about"
+      className="py-32 px-6"
+      style={{ backgroundColor: "var(--cosmic-panel)" }}
+    >
+      <div className="max-w-2xl mx-auto text-center space-y-8 animate-fade-in">
+        <div className="mono-chip-neon">{t("eyebrow")}</div>
         <h2
-          className="text-3xl md:text-4xl font-bold tracking-tight mb-8"
-          style={{ color: "var(--acm-text-primary)" }}
+          className="font-bold tracking-tight"
+          style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(2rem, 4vw, 3rem)",
+            letterSpacing: "-0.02em",
+            color: "var(--cosmic-text-primary)",
+          }}
         >
           {t("title")}
         </h2>
-        <p
-          className="text-base md:text-lg leading-relaxed"
-          style={{ color: "var(--acm-text-secondary)" }}
+
+        {/* Vertical accent line */}
+        <div className="flex justify-center">
+          <div
+            className="w-px h-12"
+            style={{
+              background: "linear-gradient(to bottom, var(--cosmic-neon), transparent)",
+            }}
+          />
+        </div>
+
+        <div
+          className="text-lg md:text-xl leading-relaxed space-y-3"
+          style={{ color: "var(--cosmic-text-secondary)" }}
         >
-          {t("line1")}
-          <br />
-          {t("line2")}
-          <br />
-          {t("line3")}
-          <br />
-          {t("line4")}
-        </p>
+          <p>{t("line1")}</p>
+          <p>{t("line2")}</p>
+          <p>{t("line3")}</p>
+          <p
+            className="pt-2 font-medium"
+            style={{ color: "var(--cosmic-text-primary)" }}
+          >
+            {t("line4")}
+          </p>
+        </div>
       </div>
     </section>
   );
 }
 
 /* ============================================================
-   Section 6 — FAQ（Brief §5 Section 6，F1/F2/F3/F4/F8）
+   SECTION 6 — FAQ
    ============================================================ */
 
 function Section6() {
   const t = useTranslations("Section6");
   const faqKeys = ["F1", "F2", "F3", "F4", "F8"] as const;
   return (
-    <section className="py-20 px-6" id="faq">
-      <div className="max-w-3xl mx-auto space-y-12">
-        <header className="text-center space-y-3">
+    <section
+      id="faq"
+      className="py-32 px-6"
+      style={{ backgroundColor: "var(--cosmic-ink)" }}
+    >
+      <div className="max-w-3xl mx-auto space-y-16">
+        <header className="max-w-2xl">
+          <div className="mono-chip-neon mb-4">{t("eyebrow")}</div>
           <h2
-            className="text-3xl md:text-4xl font-bold tracking-tight"
-            style={{ color: "var(--acm-text-primary)" }}
+            className="font-bold tracking-tight mb-4"
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: "clamp(2rem, 4vw, 3rem)",
+              letterSpacing: "-0.02em",
+              color: "var(--cosmic-text-primary)",
+            }}
           >
             {t("title")}
           </h2>
-          <p style={{ color: "var(--acm-text-secondary)" }}>{t("subtitle")}</p>
           <p
-            className="text-xs italic"
-            style={{ color: "var(--acm-text-secondary)" }}
+            className="text-sm italic"
+            style={{ color: "var(--cosmic-text-muted)" }}
           >
             {t("numberingNote")}
           </p>
         </header>
 
-        <div className="space-y-8">
+        <div className="space-y-10">
           {faqKeys.map((key) => (
             <FAQItem
               key={key}
@@ -678,17 +923,30 @@ function Section6() {
 
 function FAQItem({ num, q, a }: { num: string; q: string; a: string }) {
   return (
-    <div className="space-y-3 animate-fade-in">
-      <h3
-        className="text-lg font-semibold flex items-start gap-3"
-        style={{ color: "var(--acm-text-primary)" }}
-      >
-        <span style={{ color: "var(--acm-accent)" }}>{num}.</span>
-        <span>{q}</span>
-      </h3>
+    <div
+      className="pl-6 border-l-2 space-y-3 animate-fade-in"
+      style={{ borderColor: "var(--cosmic-ghost)" }}
+    >
+      <div className="flex items-start gap-3">
+        <span
+          className="mono-chip-neon mt-1.5 flex-shrink-0"
+          style={{ fontSize: "0.8125rem" }}
+        >
+          {num}
+        </span>
+        <h3
+          className="text-lg md:text-xl font-semibold leading-snug"
+          style={{
+            fontFamily: "var(--font-display)",
+            color: "var(--cosmic-text-primary)",
+          }}
+        >
+          {q}
+        </h3>
+      </div>
       <p
-        className="text-sm leading-relaxed pl-8"
-        style={{ color: "var(--acm-text-secondary)" }}
+        className="text-sm leading-relaxed pl-12"
+        style={{ color: "var(--cosmic-text-secondary)" }}
       >
         {a}
       </p>
@@ -697,33 +955,40 @@ function FAQItem({ num, q, a }: { num: string; q: string; a: string }) {
 }
 
 /* ============================================================
-   Footer — brief §6 信任信号 (c) Built with Claude Code + Open Core
+   FOOTER
    ============================================================ */
 
 function Footer() {
   const t = useTranslations("Footer");
   return (
     <footer
-      className="border-t py-8 px-6 text-center text-xs space-y-2"
+      className="border-t py-12 px-6"
       style={{
-        borderColor: "var(--acm-border-faint)",
-        color: "var(--acm-text-secondary)",
+        borderColor: "var(--cosmic-ghost)",
+        backgroundColor: "var(--cosmic-ink)",
       }}
     >
-      <p>{t("openCore")}</p>
-      <p>
-        {t("builtWith")}
-        {" · "}
-        <a
-          href="https://github.com/angeless/agent-cluster-manager"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:underline"
-          style={{ color: "var(--acm-accent)" }}
+      <div className="max-w-6xl mx-auto flex flex-col items-center gap-4 text-center">
+        <p
+          className="text-sm"
+          style={{ color: "var(--cosmic-text-secondary)" }}
         >
-          {t("github")}
-        </a>
-      </p>
+          {t("openCore")}
+        </p>
+        <div className="mono-chip flex items-center gap-2">
+          {t("builtWith")}
+          <span style={{ color: "var(--cosmic-text-muted)" }}>·</span>
+          <a
+            href="https://github.com/angeless/agent-cluster-manager"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:underline transition-colors"
+            style={{ color: "var(--cosmic-neon)" }}
+          >
+            {t("github")}
+          </a>
+        </div>
+      </div>
     </footer>
   );
 }

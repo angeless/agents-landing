@@ -1,17 +1,26 @@
 {
   "HomePage": {
+    "eyebrow": "V1-A · 邀请制内测",
     "headline": "24 小时运转的 AI 公司，从这里开始。",
+    "headlinePart1": "<neon>24 小时</neon>运转的",
+    "headlinePart2": "<neon>AI 公司</neon>，从这里开始。",
     "subhead": "ACM 是 AI agent 集群的项目管理系统。审批、调用、心跳、配额，都帮你管好。",
     "forWhom": "为一人公司、赶路者、和想'用 AI 跑一家公司'的人造。",
     "cta": "加入种子用户",
     "ctaSecondary": "看看长什么样",
+    "stat1Value": "4 角色",
+    "stat1Label": "AGENT 虚拟团队",
+    "stat2Value": "5 工具",
+    "stat2Label": "MCP 官方 SERVER 预装",
+    "stat3Value": "24H",
+    "stat3Label": "心跳 + 自动重试",
     "heroCards": {
       "life": {
         "title": "民宿生活公司",
         "task1": "LIFE_CRAWLER · 竞品房价差异表",
         "task2": "LIFE_ANALYST · 出行路线复核",
         "task3": "LIFE_KM · 知识库新增整理",
-        "tag": "3 agents · 24h 心跳调度 · 🟢 V1-A live"
+        "tag": "3 AGENTS · 24H · 🟢 LIVE"
       },
       "tourism": {
         "title": "旅游运营公司",
@@ -19,48 +28,54 @@
         "task2": "TOUR_SALES · 客户答疑清单",
         "task3": "TOUR_DISPATCH · 供应商付款提醒",
         "task4": "TOUR_FINANCE · 报价利润复核",
-        "tag": "4 agents · 24h 心跳调度 · 🟢 V1-A live"
+        "tag": "4 AGENTS · 24H · 🟢 LIVE"
       },
       "create": {
         "title": "+ 你的 AI 公司",
         "line1": "PM Agent 帮你建",
         "line2": "自然语言描述业务流",
         "line3": "一键生成 + 立即跑",
-        "cta": "立即体验 →",
+        "cta": "立即体验",
         "tag": "🚀 内测开放"
       }
     }
   },
   "Section2": {
-    "title": "你来这里，是因为...",
-    "subtitle": "三类人在 V1-A 内测会受益最深。",
+    "eyebrow": "01 · WHO IT'S FOR",
+    "title": "三类人在 V1-A 内测会受益最深。",
+    "subtitle": "ACM 不为所有人造。下面这些是我们盯着的人。",
     "personaB": {
+      "label": "PLATFORM TEAM",
       "title": "平台团队评估 build-vs-buy",
       "desc": "多租户 + 审批治理 + 可自部署。不锁数据出境。"
     },
     "personaC": {
+      "label": "CREATOR / EDUCATOR",
       "title": "AI 教育者 / 创作者",
       "desc": "工作流可视化 + 调用回执 + tier 配额，做 demo / 教程不爆钱包。"
     },
     "personaD": {
+      "label": "INDIE OPERATOR",
       "title": "一人公司 / 赶路者",
       "desc": "一键部署 + 心跳监控 + 错误重试。把运维这层从你脑子里删掉。"
     }
   },
   "Section3": {
-    "title": "核心能力",
-    "subtitle": "三层骨架 + 5 个 MCP 官方 server 预装 + npm 生态 1300+ 可装。",
+    "eyebrow": "02 · WHAT IT DOES",
+    "title": "三层骨架 + 工具治理。",
+    "subtitle": "ACM 不替你写 agent。ACM 是 agent 跑起来之后的'管'。",
     "cap1Title": "多 agent 工作流引擎",
     "cap1Desc": "DAG 拓扑 + completion hook + 边条件。例：客服查询 → 风控审批 → 工单创建 可声明式拼接。",
     "cap2Title": "工具调用治理",
     "cap2Desc": "tool-proxy 拦截 + 审批闸 + tier 配额。高风险动作走人工审批，低风险直通。",
     "cap3Title": "心跳 + 定时任务",
     "cap3Desc": "heartbeat scheduler + cron。每天 9 点跑日报 agent，挂了自动告警。",
+    "mcpEyebrow": "TOOL GOVERNANCE",
     "hubLabel": "ACM Hub",
     "hubSubtitle": "工具 + 治理",
-    "mcpHeadline": "已集成 5 个 MCP 官方 server",
-    "mcpFootnote": "通过 mcp_installer 一键装任意 npm/uv MCP server。基于 ModelContextProtocol 官方包生态，已有 1300+ 第三方 server 可装。",
-    "mcpLink": "查看 MCP Server 目录 ↗",
+    "mcpHeadline": "5 个 MCP 官方 server 预装，一半默认需审批。",
+    "mcpFootnote": "通过 mcp_installer 一键装任意 npm/uv MCP server。基于 ModelContextProtocol 官方包生态，1300+ 第三方 server 可装。",
+    "mcpLink": "查看 MCP Server 目录",
     "servers": {
       "filesystem": { "name": "File System", "desc": "本地文件读写", "risk": "medium" },
       "fetch": { "name": "HTTP Fetch", "desc": "外部 HTTP 请求", "risk": "high", "needsApproval": "默认需审批" },
@@ -71,60 +86,64 @@
     "riskLabel": { "low": "low risk", "medium": "medium risk", "high": "high risk" }
   },
   "Section4": {
-    "title": "Roadmap — 透明",
-    "subtitle": "✅ 内容基于现有 codebase 47 个 modules 实地盘点，不画饼。",
+    "eyebrow": "03 · ROADMAP",
+    "title": "实地盘点，不画饼。",
+    "subtitle": "✅ 基于现有 codebase 47 modules 实地盘点，每行都对得上 git log。",
     "now": {
       "label": "现在能做",
       "emoji": "🟢",
-      "tag": "V1-A live",
+      "tag": "V1-A LIVE",
       "item1": "多 agent 治理：tool-proxy + 审批闸 + 调用回执 + 审计日志",
       "item2": "工作流 DAG 引擎：4 种 agent 角色 + 4 种执行模式",
       "item3": "AI 辅助创建业务流：PM Agent 自然语言对话 → plan → 应用",
       "item4": "24 小时心跳调度：heartbeat-engine + 定时任务 + 超时回扫",
       "item5": "MCP 工具生态：5 个官方 server 预装 + npm 1300+ 可装",
-      "item6": "多租户 + 团队工作空间：每人独立 tenant + 角色权限 + 知识沉淀",
+      "item6": "多租户 + 团队工作空间：每人独立 tenant + 角色权限",
       "item7": "2 个业务领域模板（POC）：民宿运营 / 旅游运营"
     },
     "soon": {
       "label": "6 个月内",
       "emoji": "🔨",
-      "tag": "V1.10 - V1.11",
+      "tag": "V1.10 — V1.11",
       "item1": "自助激活 + 邀请制（V1.10 当前 milestone）",
-      "item2": "GitHub 开源 + 一键自部署脚本（deploy_hetzner.sh 已 80%）",
+      "item2": "GitHub 开源 + 一键自部署脚本",
       "item3": "LLM 后端可换（Volcengine / Anthropic / OpenAI / 国产）",
-      "item4": "Tenant 级配额强制 + 成本告警（防失控烧钱）",
-      "item5": "更多业务领域模板（电商 / 客服 / 内容生产）",
+      "item4": "Tenant 级配额强制 + 成本告警",
+      "item5": "更多业务领域模板（电商 / 客服 / 内容）",
       "item6": "错误恢复 + business continuity patterns",
       "item7": "Streaming UI（token-by-token 反馈）"
     },
     "future": {
       "label": "远期愿景",
       "emoji": "🌅",
-      "tag": "V1.x+，无时间承诺",
+      "tag": "V1.X+ 无时间承诺",
       "item1": "真正'无人值守 24h AI 公司'",
-      "item2": "Manager agent 自动调度其它 agents 协作",
+      "item2": "Manager agent 自动调度其它 agents",
       "item3": "业务 KPI dashboard + agent OKR",
-      "item4": "跨 tenant agent 协作（公司间 agent 接活）",
+      "item4": "跨 tenant agent 协作（公司间接活）",
       "item5": "社区 marketplace（agent / 业务流模板）"
     },
     "wishlist": {
-      "title": "征集中",
+      "eyebrow": "WANTED · INPUT NEEDED",
+      "title": "下一批 MCP server 适配优先级，投票决定。",
       "desc": "你最想看到哪个国内 SaaS 上架 MCP server？",
       "candidates": "飞书 / 企微 / 钉钉 / 小红书 / 微信支付 / 语雀 ...",
-      "footnote": "投票决定下一批适配优先级。",
-      "cta": "提名 + 投票 →"
+      "footnote": "你的投票决定 V1.11+ 适配顺序。",
+      "cta": "提名 + 投票"
     }
   },
   "Section5": {
-    "title": "About",
+    "eyebrow": "04 · ABOUT",
+    "title": "为什么造 ACM",
     "line1": "我是 ACM 的作者。前游戏 PM、世界牧民，现在 vibecoding 上路，一人公司实践者。",
-    "line2": "我相信人生不能只有一种活法，AI 能解放真正的生产力 —",
-    "line3": "让你有更多余地，去体验真实的生活。",
+    "line2": "我相信人生不能只有一种活法，",
+    "line3": "AI 能解放真正的生产力 — 让你有更多余地，去体验真实的生活。",
     "line4": "ACM 是我为这条路造的工具。"
   },
   "Section6": {
-    "title": "FAQ",
-    "subtitle": "5 条常见问题。",
+    "eyebrow": "05 · FAQ",
+    "title": "常见 5 问",
+    "subtitle": "PO 已选定。",
     "numberingNote": "编号保留 PO Q4 候选原编号（F5/F6/F7 未选中，决策为进 docs 不进 landing）。",
     "F1": {
       "q": "我可以自己部署 ACM 吗？数据不出我的服务器？",
@@ -176,8 +195,8 @@
     "backToHome": "← 返回首页"
   },
   "Footer": {
-    "builtWith": "Built with Claude Code",
-    "github": "GitHub",
+    "builtWith": "BUILT WITH CLAUDE CODE",
+    "github": "GITHUB",
     "openCore": "Open Core：自部署免费 · 按云端 + token 成本透传付费"
   }
 }

@@ -8,9 +8,12 @@ source: claude-code
 
 ## 上次停在
 
-- **版本**：pre-v0.1.0（尚无 VERSION 文件，待 CF Pages 部署后建议打 v0.1.0 tag）
-- **分支**：main（唯一分支，CF Pages auto-deploy 目标）
-- **最后完成**：WS-4 Task 4.1 → 4.5 全部 done（2026-05-14 session）
+- **版本**：pre-v0.1.0（建议打 v0.1.0 tag 标志 V1-A 上线）
+- **分支**：main（唯一分支）
+- **最后完成**：🎉 **2026-05-14 V1-A landing 上线** —— Workers + Static Assets (OpenNext) 部署完成
+- **Live URLs**：
+  - 直接访问：https://agents-landing.angeless-wanganqi.workers.dev/zh + /en
+  - 自定义 domain：https://agents.ngzr.net/zh + /en（经 ACM agents-router worker 路由）
 - **commits**：
   - `66054f9` Initial commit from Create Next App
   - `9881c38` chore: add next-intl for i18n
@@ -36,30 +39,29 @@ i18n messages 完整覆盖：HomePage / Section2-6 / ApplyPage / OverCapacity / 
 
 ## 下一步（按优先级）
 
-### 🟡 高优先级：CF Pages 部署 + 7-path smoke test
+### ✅ DONE 2026-05-14：部署上线
 
-**需要 PO 手动操作 Cloudflare dashboard**（CLI 也可用 wrangler 配，但 dashboard 更直观）：
+部署架构调整：原 brief §12.7 R0 锁 CF Pages → 实施时改用 **Workers + Static Assets (OpenNext adapter)**，原因是 `@cloudflare/next-on-pages` peer dep 仅支持 Next 14-15，本项目 Next 16.2.6 必须用 `@opennextjs/cloudflare`。功能等价。
 
-1. 登录 Cloudflare → Pages → Create a project → Connect to Git → 选 `angeless/agents-landing`
-2. 配置：
-   - Framework preset: `Next.js`
-   - Build command: `npm run build`
-   - Build output directory: `.next`
-   - Root directory: `/`
-   - Environment vars: 无（暂无）
-3. Save and Deploy → 等首次 build 完成 → 拿到 `agents-landing.pages.dev` URL
-4. 验证 preview URL：访问 `/zh`、`/en`、`/zh/apply` 看视觉是否符合 brief §12
-
-部署完后回 ACM 主仓做：
-5. `workers/agents-router/wrangler.toml` 里把 `agents-landing.pages.dev` 写到 origin 配置
-6. `cd workers/agents-router && npx wrangler deploy` → bind 到 `agents.ngzr.net/*`
-7. 跑 7-path smoke test（README 已有 script）：
-   - `/` → CF Pages landing
-   - `/apply` → CF Pages apply
-   - `/faq` → CF Pages (现在 #faq 是 anchor，待确认是否需要单独 page)
-   - `/app` `/app/*` → Hetzner web-console
-   - `/api/v1/health` → Hetzner api-gateway
-   - `/health` → Hetzner api-gateway smoke
+部署链路：
+1. ✅ `npx wrangler login`（PO 浏览器一次性 auth）
+2. ✅ `npx wrangler pages project create agents-landing`（创建后未使用，可保留作 placeholder）
+3. ✅ `npm install -D @opennextjs/cloudflare`
+4. ✅ `npx opennextjs-cloudflare migrate`（自动 setup configs）
+5. ✅ `npm run deploy`（build + deploy，33 files / 5067 KiB / 28ms startup）
+6. ✅ Worker URL: `https://agents-landing.angeless-wanganqi.workers.dev`
+7. ✅ 更新 ACM `workers/agents-router/src/index.ts` LANDING_ORIGIN URL + 4 处 tests
+8. ✅ `cd workers/agents-router && npx wrangler deploy`（11/11 tests pass → bind agents.ngzr.net/*）
+9. ✅ 7-path smoke test：
+   - `/` → 307 (next-intl middleware → /zh) ✓
+   - `/zh` → 200 80KB ✓
+   - `/en` → 200 81KB ✓
+   - `/zh/apply` → 200 21KB ✓
+   - `/faq` → 307 → /zh/faq (⚠ /zh/faq 不存在，TODO 处理)
+   - `/app` → 200 (Hetzner web-console) ✓
+   - `/app/dashboard` → 404 (web-console 无此 client route，不阻塞)
+   - `/api/v1/health` → 404 (api-gateway endpoint 未实现，记 ACM TODO)
+   - `/health` → 200 (api-gateway smoke 直透) ✓
 
 ### 🟢 中优先级：本地 preview 验证视觉
 

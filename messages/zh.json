@@ -38,6 +38,24 @@
         "cta": "立即体验",
         "tag": "🚀 内测开放"
       }
+    },
+    "variantA": {
+      "eyebrow": "V1-A · 邀请制内测",
+      "headlinePart1": "<neon>93%</neon> 的 AI Agent 项目卡在 POC → 生产。",
+      "headlinePart2": "ACM 是那个<neon>生产</neon>。",
+      "subhead": "AgentOps 让你的 AI 数字军团在工作流约束下自愈、续跑、24 小时替你打。"
+    },
+    "variantB": {
+      "eyebrow": "V1-A · 多 AGENT 治理基座",
+      "headlinePart1": "OpenClaw 让你跑 <neon>1 个 agent</neon>。",
+      "headlinePart2": "ACM 让你跑一支<neon>自愈的 agent 军团</neon>。",
+      "subhead": "Multi-agent + 工作流约束 + 自愈 = 一人开 N 公司的 AgentOps 基座。"
+    },
+    "variantC": {
+      "eyebrow": "V1-A · 一人公司基座",
+      "headlinePart1": "<neon>一个人</neon>，N 家 AI 公司。",
+      "headlinePart2": "稳定 24 小时替你打的 <neon>AgentOps 基座</neon>。",
+      "subhead": "多 agent 协调失败占 36.94%。ACM 把这 36.94% 干掉，让你的 AI 军团跑得稳。"
     }
   },
   "Section2": {
@@ -77,13 +95,39 @@
     "mcpFootnote": "通过 mcp_installer 一键装任意 npm/uv MCP server。基于 ModelContextProtocol 官方包生态，1300+ 第三方 server 可装。",
     "mcpLink": "查看 MCP Server 目录",
     "servers": {
-      "filesystem": { "name": "File System", "desc": "本地文件读写", "risk": "medium" },
-      "fetch": { "name": "HTTP Fetch", "desc": "外部 HTTP 请求", "risk": "high", "needsApproval": "默认需审批" },
-      "sqlite": { "name": "SQLite", "desc": "数据库查询", "risk": "medium" },
-      "memory": { "name": "Memory", "desc": "长期记忆图谱", "risk": "low" },
-      "puppeteer": { "name": "Browser", "desc": "headless 浏览器", "risk": "high", "needsApproval": "默认需审批" }
+      "filesystem": {
+        "name": "File System",
+        "desc": "本地文件读写",
+        "risk": "medium"
+      },
+      "fetch": {
+        "name": "HTTP Fetch",
+        "desc": "外部 HTTP 请求",
+        "risk": "high",
+        "needsApproval": "默认需审批"
+      },
+      "sqlite": {
+        "name": "SQLite",
+        "desc": "数据库查询",
+        "risk": "medium"
+      },
+      "memory": {
+        "name": "Memory",
+        "desc": "长期记忆图谱",
+        "risk": "low"
+      },
+      "puppeteer": {
+        "name": "Browser",
+        "desc": "headless 浏览器",
+        "risk": "high",
+        "needsApproval": "默认需审批"
+      }
     },
-    "riskLabel": { "low": "low risk", "medium": "medium risk", "high": "high risk" }
+    "riskLabel": {
+      "low": "low risk",
+      "medium": "medium risk",
+      "high": "high risk"
+    }
   },
   "Section4": {
     "eyebrow": "03 · ROADMAP",

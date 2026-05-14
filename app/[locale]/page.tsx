@@ -19,10 +19,19 @@ import {
  * 参照：LayerZero / Anthropic claude.ai / Replicate
  * 见根目录 DESIGN.md 完整 spec + rationale
  */
-export default function HomePage() {
+type Variant = "A" | "B" | "C";
+
+export default async function HomePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ v?: string }>;
+}) {
+  const { v } = await searchParams;
+  const variant: Variant = v === "B" || v === "C" ? v : "A";
+
   return (
     <>
-      <HeroSection />
+      <HeroSection variant={variant} />
       <CosmicDivider />
       <Section2 />
       <CosmicDivider />
@@ -33,7 +42,7 @@ export default function HomePage() {
       <Section5 />
       <CosmicDivider />
       <Section6 />
-      <Footer />
+      <Footer variant={variant} />
     </>
   );
 }
@@ -115,8 +124,10 @@ function CosmicDecoration() {
    HERO SECTION — Cosmic Lab 主基底 + 浮动 3 张 AI 公司卡
    ============================================================ */
 
-function HeroSection() {
+function HeroSection({ variant }: { variant: Variant }) {
   const t = useTranslations("HomePage");
+  const variantNs = `HomePage.variant${variant}` as "HomePage.variantA";
+  const tv = useTranslations(variantNs);
 
   return (
     <section className="cosmic-hero-bg relative min-h-screen flex items-center justify-center overflow-hidden px-6 py-32">
@@ -137,11 +148,11 @@ function HeroSection() {
               className="inline-block w-1.5 h-1.5 rounded-full pulse-dot"
               style={{ backgroundColor: "var(--cosmic-neon)" }}
             />
-            {t("eyebrow")}
+            {tv("eyebrow")}
           </span>
         </div>
 
-        {/* Display headline with neon-highlight keywords */}
+        {/* Display headline with neon-highlight keywords (variant-specific) */}
         <h1
           className="font-bold tracking-tight leading-[0.95]"
           style={{
@@ -151,16 +162,16 @@ function HeroSection() {
             color: "var(--cosmic-text-primary)",
           }}
         >
-          {t.rich("headlinePart1", {
+          {tv.rich("headlinePart1", {
             neon: (chunks) => <span className="neon-highlight">{chunks}</span>,
           })}
           <br />
-          {t.rich("headlinePart2", {
+          {tv.rich("headlinePart2", {
             neon: (chunks) => <span className="neon-highlight">{chunks}</span>,
           })}
         </h1>
 
-        {/* Subhead */}
+        {/* Subhead (variant-specific) */}
         <p
           className="max-w-2xl mx-auto leading-relaxed"
           style={{
@@ -168,7 +179,7 @@ function HeroSection() {
             color: "var(--cosmic-text-secondary)",
           }}
         >
-          {t("subhead")}
+          {tv("subhead")}
         </p>
 
         {/* For whom */}
@@ -958,7 +969,7 @@ function FAQItem({ num, q, a }: { num: string; q: string; a: string }) {
    FOOTER
    ============================================================ */
 
-function Footer() {
+function Footer({ variant }: { variant: Variant }) {
   const t = useTranslations("Footer");
   return (
     <footer
@@ -975,6 +986,13 @@ function Footer() {
         >
           {t("openCore")}
         </p>
+        {/* A/B test debug indicator — 部署后用于 PO 识别当前 variant */}
+        <div
+          className="mono-chip-neon inline-flex items-center gap-2 px-3 py-1 rounded-full border"
+          style={{ borderColor: "var(--cosmic-border)", backgroundColor: "var(--cosmic-panel)" }}
+        >
+          HERO VARIANT: {variant}
+        </div>
         <div className="mono-chip flex items-center gap-2">
           {t("builtWith")}
           <span style={{ color: "var(--cosmic-text-muted)" }}>·</span>

@@ -1,0 +1,15 @@
+{
+  "HomePage": {
+    "headline": "An operating system for AI-native operations.",
+    "subhead": "ACM is the ops backbone for multi-agent fleets. Approvals, tool calls, heartbeats, quotas — all handled.",
+    "forWhom": "Built for indie hackers, AI-native operators, and platform teams evaluating build-vs-buy.",
+    "cta": "Get Beta Access",
+    "ctaSecondary": "See how it works",
+    "placeholder": "Task 4.2 incoming — Hero / personas / tool governance / roadmap / about / FAQ"
+  },
+  "Footer": {
+    "builtWith": "Built with Claude Code",
+    "github": "GitHub",
+    "openCore": "Open Core: free to self-host, pay only for cloud + tokens"
+  }
+}

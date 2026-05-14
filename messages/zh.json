@@ -1,0 +1,15 @@
+{
+  "HomePage": {
+    "headline": "24 小时运转的 AI 公司，从这里开始。",
+    "subhead": "ACM 是 AI agent 集群的项目管理系统。审批、调用、心跳、配额，都帮你管好。",
+    "forWhom": "为一人公司、赶路者、和想'用 AI 跑一家公司'的人造。",
+    "cta": "加入种子用户",
+    "ctaSecondary": "看看长什么样",
+    "placeholder": "Task 4.2 即将完善 — Hero / 三 persona / 工具治理 / Roadmap / About / FAQ"
+  },
+  "Footer": {
+    "builtWith": "Built with Claude Code",
+    "github": "GitHub",
+    "openCore": "Open Core: free to self-host, pay only for cloud + tokens"
+  }
+}
